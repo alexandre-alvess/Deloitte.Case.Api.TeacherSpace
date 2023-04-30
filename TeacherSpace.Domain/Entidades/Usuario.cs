@@ -1,4 +1,6 @@
-﻿namespace Deloitte.Case.TeacherSpace.Domain.Entidades
+﻿using Deloitte.Case.TeacherSpace.Domain.Entidades.Base;
+
+namespace Deloitte.Case.TeacherSpace.Domain.Entidades
 {
     /// <summary>
     /// Define a classe <see cref="Usuario"/>.

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Deloitte.Case.TeacherSpace.Domain.Entidades.Base;
 using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
@@ -15,7 +16,7 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
     /// <typeparam name="TValidador"></typeparam>
     public abstract class BaseServico<TModel, TEntidade, TRepositorio, TValidador> : IBaseService<TModel>
         where TModel : Model.BaseModel
-        where TEntidade : Domain.Entidades.EntidadeBase
+        where TEntidade : EntidadeBase
         where TRepositorio : IBaseRepositorio<TEntidade>
         where TValidador : AbstractValidator<TEntidade>
     {
@@ -51,11 +52,15 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
             if (!validacao.StatusOk)
                 return DataResult<TModel>.Falha(validacao.Erros);
 
+            entidade.Id = Guid.NewGuid();
+
             var resultado = await _repositorio.Criar(entidade);
             if (!resultado.StatusOk)
                 return DataResult<TModel>.Falha(resultado.Erros);
 
             DepoisDeAdicionar(model, entidade);
+
+            _mapper.Map(entidade, model);
 
             return DataResult<TModel>.Successo(model);
         }
@@ -107,6 +112,8 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
                 return DataResult<TModel>.Falha(resultado.Erros);
 
             DepoisDeAtualizar(model, entidade);
+
+            _mapper.Map(entidade, model);
 
             return DataResult<TModel>.Successo(model);
         }

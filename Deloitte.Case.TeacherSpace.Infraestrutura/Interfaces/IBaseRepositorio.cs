@@ -1,4 +1,4 @@
-﻿using Deloitte.Case.TeacherSpace.Domain.Entidades;
+﻿using Deloitte.Case.TeacherSpace.Domain.Entidades.Base;
 using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
 using System.Linq.Expressions;
 

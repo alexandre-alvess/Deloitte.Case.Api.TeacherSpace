@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
+using Deloitte.Case.Api.TeacherSpace.Models.Requests;
+using Deloitte.Case.Api.TeacherSpace.Models.Responses;
+using Deloitte.Case.TeacherSpace.Domain.Entidades;
+using Deloitte.Case.TeacherSpace.Services.Model;
 
-namespace Deloitte.Case.TeacherSpace.Services.Mapeamentos
+namespace Deloitte.Case.Api.TeacherSpace.Mapeamentos
 {
     /// <summary>
     /// Define a configuração dos mapeamentos da aplicação que serão inicializados.
@@ -23,7 +27,15 @@ namespace Deloitte.Case.TeacherSpace.Services.Mapeamentos
 
         private static void CriarMapeamentoAluno(IMapperConfigurationExpression cfg)
         {
-            //cfg.CreateMap<>()
+            cfg.CreateMap<AlunoRequest, AlunoModel>().ReverseMap();
+            cfg.CreateMap<AlunoResponse, AlunoModel>().ReverseMap();
+            cfg.CreateMap<Aluno, Pessoa>().ReverseMap();
+
+            cfg.CreateMap<Aluno, AlunoModel>()
+                .ForMember(x => x.Nome, y => y.MapFrom(z => z.Pessoa != null ? z.Pessoa.Nome : string.Empty))
+                .ForMember(x => x.DataNascimento, y => y.MapFrom(z => z.Pessoa != null ? z.Pessoa.DataNascimento : new DateTime()))
+                .ForMember(x => x.Email, y => y.MapFrom(z => z.Pessoa != null ? z.Pessoa.Email : string.Empty))
+                .ReverseMap();
         }
 
         private static void CriarMapeamentoBoletim(IMapperConfigurationExpression cfg)

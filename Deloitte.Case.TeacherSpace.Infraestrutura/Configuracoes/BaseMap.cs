@@ -1,4 +1,4 @@
-﻿using Deloitte.Case.TeacherSpace.Domain.Entidades;
+﻿using Deloitte.Case.TeacherSpace.Domain.Entidades.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
