@@ -6,7 +6,7 @@ namespace Deloitte.Case.TeacherSpace.Services.Interfaces
     /// <summary>
     /// Define a interface  <see cref="IBaseService"/>.
     /// </summary>
-    public interface IBaseService<TModel>
+    public interface IBaseServico<TModel>
         where TModel : BaseModel
     {
         /// <summary>
