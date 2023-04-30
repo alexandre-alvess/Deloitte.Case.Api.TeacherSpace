@@ -1,5 +1,6 @@
 ﻿using Deloitte.Case.TeacherSpace.Domain.Entidades;
 using Deloitte.Case.TeacherSpace.Domain.Entidades.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Deloitte.Case.TeacherSpace.Domain.Entities
 {
@@ -22,5 +23,23 @@ namespace Deloitte.Case.TeacherSpace.Domain.Entities
         /// Obtém ou define as turmas do professor.
         /// </summary>
         public virtual ICollection<Turma> Turmas { get; set; }
+
+        /// <summary>
+        /// Obtém ou define o nome.
+        /// </summary>
+        [NotMapped]
+        public override string Nome { get; set; }
+
+        /// <summary>
+        /// Obtém ou define o email.
+        /// </summary>
+        [NotMapped]
+        public override string Email { get; set; }
+
+        /// <summary>
+        /// Obtém ou define a data de nascimento.
+        /// </summary>
+        [NotMapped]
+        public override DateTime DataNascimento { get; set; }
     }
 }
