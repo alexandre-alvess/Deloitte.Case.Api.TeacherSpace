@@ -28,6 +28,11 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Configuracoes
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Aluno_Pessoa")
                 .IsRequired();
+
+            builder
+                .Ignore(e => e.Email)
+                .Ignore(e => e.DataNascimento)
+                .Ignore(e => e.Nome);
         }
     }
 }

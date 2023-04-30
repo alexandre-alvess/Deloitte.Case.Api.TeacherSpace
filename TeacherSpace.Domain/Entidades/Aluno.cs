@@ -1,9 +1,11 @@
-﻿namespace Deloitte.Case.TeacherSpace.Domain.Entidades
+﻿using Deloitte.Case.TeacherSpace.Domain.Entidades.Base;
+
+namespace Deloitte.Case.TeacherSpace.Domain.Entidades
 {
     /// <summary>
     /// Define a classe <see cref="Usuario"/>.
     /// </summary>
-    public class Aluno : Pessoa
+    public class Aluno : PessoaBase
     {
         /// <summary>
         /// Obtém ou define o identificador da pessoa.

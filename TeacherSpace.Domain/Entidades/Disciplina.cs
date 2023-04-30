@@ -1,4 +1,5 @@
-﻿using Deloitte.Case.TeacherSpace.Domain.Entities;
+﻿using Deloitte.Case.TeacherSpace.Domain.Entidades.Base;
+using Deloitte.Case.TeacherSpace.Domain.Entities;
 
 namespace Deloitte.Case.TeacherSpace.Domain.Entidades
 {

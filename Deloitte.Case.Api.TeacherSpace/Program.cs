@@ -1,3 +1,5 @@
+using AutoMapper;
+using Deloitte.Case.Api.TeacherSpace.Mapeamentos;
 using Deloitte.Case.TeacherSpace.Core.Extensoes;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Context;
 using Deloitte.Case.TeacherSpace.Services.Services;
@@ -18,6 +20,15 @@ builder.Services.AddDbContext<TeacherSpaceContext>(options => options.UseSqlServ
 
 // Configuração e inicialização dos serviços e repositórios por injeção de dependência.
 StartupService.Inicialize(builder.Services);
+
+// Configuração dos mapeamentos "AutoMapper" por injeção de dependência.
+var configuracaoMapeamentos = new MapperConfiguration(cfg =>
+{
+    cfg.AllowNullDestinationValues = true;
+    AutoMapeamentos.Inicialize(cfg);
+}).CreateMapper();
+
+builder.Services.AddSingleton(configuracaoMapeamentos);
 
 var app = builder.Build();
 

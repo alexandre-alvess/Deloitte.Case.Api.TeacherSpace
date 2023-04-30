@@ -1,4 +1,4 @@
-﻿using Deloitte.Case.TeacherSpace.Domain.Entidades;
+﻿using Deloitte.Case.TeacherSpace.Domain.Entidades.Base;
 using FluentValidation;
 
 namespace Deloitte.Case.TeacherSpace.Domain.Validadores

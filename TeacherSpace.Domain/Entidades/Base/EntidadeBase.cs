@@ -1,4 +1,4 @@
-﻿namespace Deloitte.Case.TeacherSpace.Domain.Entidades
+﻿namespace Deloitte.Case.TeacherSpace.Domain.Entidades.Base
 {
     /// <summary>
     /// Define a classe <see cref="EntidadeBase"/>.

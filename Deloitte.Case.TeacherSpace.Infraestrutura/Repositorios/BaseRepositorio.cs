@@ -1,8 +1,9 @@
-﻿using Deloitte.Case.TeacherSpace.Domain.Entidades;
+﻿using Deloitte.Case.TeacherSpace.Domain.Entidades.Base;
 using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Context;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
 namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
@@ -13,18 +14,22 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
     public abstract class BaseRepositorio<TEntidade> : IBaseRepositorio<TEntidade>
         where TEntidade : EntidadeBase
     {
+        private Func<IQueryable<TEntidade>, IIncludableQueryable<TEntidade, object>> _includes = null;
+
         /// <summary>
         /// Define o contexto da base de dados.
         /// </summary>
-        private readonly TeacherSpaceContext _context;
+        protected readonly TeacherSpaceContext _context;
 
         /// <summary>
         /// Inicializa uma nova instância de <see cref="BaseRepositorio"/>.
         /// </summary>
         /// <param name="context">O contexto do banco de dados <see cref="TeacherSpaceContext"/>.</param>
-        protected BaseRepositorio(TeacherSpaceContext context)
+        /// <param name="includes">Os includes da consulta.</param>
+        protected BaseRepositorio(TeacherSpaceContext context, Func<IQueryable<TEntidade>, IIncludableQueryable<TEntidade, object>> includes = null)
         {
             _context = context;
+            _includes = includes;
         }
 
         /// <summary>
@@ -78,7 +83,7 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
         /// <returns>A entidade consultada <see cref="TEntidade"/>.</returns>
         public virtual async Task<TEntidade> Consultar(Guid id)
         {
-            return await _context.Set<TEntidade>()
+            return await QueryIncludes()
                 .AsNoTracking()
                 .Where(entidade => entidade.Id == id)
                 .FirstOrDefaultAsync();
@@ -103,7 +108,7 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
         /// <returns>A lista de entidades consultadas <see cref="List{T}"/>.</returns>
         public virtual async Task<IEnumerable<TEntidade>> ConsultarLista(int pagina, int quantide_pagina)
         {
-            return await _context.Set<TEntidade>().AsNoTracking().Skip(quantide_pagina * (pagina - 1)).Take(quantide_pagina).ToListAsync();
+            return await QueryIncludes().AsNoTracking().Skip(quantide_pagina * (pagina - 1)).Take(quantide_pagina).ToListAsync();
         }
 
         /// <summary>
@@ -124,6 +129,18 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
         {
             IQueryable<T> query = _context.Set<T>();
             return query.Any() ? paths.Aggregate(query, (current, path) => current.Include(path)) : query;
+        }
+
+        protected IQueryable<TEntidade> QueryIncludes()
+        {
+            IQueryable<TEntidade> query = _context.Set<TEntidade>();
+
+            if (_includes != null)
+            {
+                query = _includes(query);
+            }
+
+            return query;
         }
     }
 }

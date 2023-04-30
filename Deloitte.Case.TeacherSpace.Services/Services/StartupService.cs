@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
+﻿using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
-using Deloitte.Case.TeacherSpace.Services.Mapeamentos;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Deloitte.Case.TeacherSpace.Services.Services
@@ -16,7 +14,6 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
         {
             InicializeRepositorios(services);
             InicializeServicos(services);
-            InicializeMapeamentos(services);
         }
 
         public static void InicializeServicos(IServiceCollection services)
@@ -33,17 +30,6 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
             services.AddScoped<IProfessorRepositorio, ProfessorRepositorio>();
             services.AddScoped<ITurmaRepositorio, TurmaRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
-        }
-
-        public static void InicializeMapeamentos(IServiceCollection services)
-        {
-            var configuracaoMapeamentos = new MapperConfiguration(cfg =>
-            {
-                cfg.AllowNullDestinationValues = true;
-                AutoMapeamentos.Inicialize(cfg);
-            }).CreateMapper();
-
-            services.AddSingleton(configuracaoMapeamentos);
         }
     }
 }
