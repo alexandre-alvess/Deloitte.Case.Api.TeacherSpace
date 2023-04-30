@@ -5,7 +5,7 @@ namespace Deloitte.Case.TeacherSpace.Services.Interfaces
     /// <summary>
     /// Define a interface <see cref="IAlunoServico"/>.
     /// </summary>
-    public interface IAlunoServico : IBaseService<AlunoModel>
+    public interface IAlunoServico : IBaseServico<AlunoModel>
     {
     }
 }

@@ -2,6 +2,7 @@
 using Deloitte.Case.Api.TeacherSpace.Models.Requests;
 using Deloitte.Case.Api.TeacherSpace.Models.Responses;
 using Deloitte.Case.TeacherSpace.Domain.Entidades;
+using Deloitte.Case.TeacherSpace.Domain.Entities;
 using Deloitte.Case.TeacherSpace.Services.Model;
 
 namespace Deloitte.Case.Api.TeacherSpace.Mapeamentos
@@ -55,7 +56,15 @@ namespace Deloitte.Case.Api.TeacherSpace.Mapeamentos
 
         private static void CriarMapeamentoProfessor(IMapperConfigurationExpression cfg)
         {
+            cfg.CreateMap<ProfessorRequest, ProfessorModel>().ReverseMap();
+            cfg.CreateMap<ProfessorResponse, ProfessorModel>().ReverseMap();
+            cfg.CreateMap<Professor, Pessoa>().ReverseMap();
 
+            cfg.CreateMap<Professor, ProfessorModel>()
+                .ForMember(x => x.Nome, y => y.MapFrom(z => z.Pessoa != null ? z.Pessoa.Nome : string.Empty))
+                .ForMember(x => x.DataNascimento, y => y.MapFrom(z => z.Pessoa != null ? z.Pessoa.DataNascimento : new DateTime()))
+                .ForMember(x => x.Email, y => y.MapFrom(z => z.Pessoa != null ? z.Pessoa.Email : string.Empty))
+                .ReverseMap();
         }
 
         private static void CriarMapeamentoTurma(IMapperConfigurationExpression cfg)

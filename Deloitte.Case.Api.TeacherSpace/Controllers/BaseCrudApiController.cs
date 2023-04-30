@@ -23,7 +23,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         where TModel : BaseModel
         where TRequest : BaseRequest
         where TResponse : class
-        where TService : IBaseService<TModel>
+        where TService : IBaseServico<TModel>
     {
         /// <summary>
         /// Define o mapper.

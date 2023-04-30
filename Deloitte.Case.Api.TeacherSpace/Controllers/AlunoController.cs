@@ -17,18 +17,12 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
     public class AlunoController : BaseCrudApiController<AlunoModel, AlunoRequest, AlunoResponse, IAlunoServico>
     {
         /// <summary>
-        /// Define o mapper.
-        /// </summary>
-        private readonly IMapper _mapper;
-
-        /// <summary>
         /// Inicializa uma nova instância de <see cref="AlunoController"/>.
         /// </summary>
         /// <param name="alunoServico">O serviço de aluno  <see cref="IAlunoServico"/>.</param>
         /// <param name="mapper">O mapper <see cref="IMapper"/>.</param>
         public AlunoController(IAlunoServico alunoServico, IMapper mapper) : base(alunoServico, mapper)
         {
-            _mapper = mapper;
         }
 
         /// <summary>
@@ -95,7 +89,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         /// <summary>
         /// CONSULTAR LISTA.
         /// </summary>
-        /// <param name="alunoId">O identificador do aluno <see cref="Guid"/>.</param>
+        /// <param name="parametros">Os parâmetros para realizar a consulta <see cref="ApiParametros"/>.</param>
         /// <returns>Os dados do aluno consultados.</returns>
         [HttpGet("ConsultarLista")]
         [Produces("application/json")]

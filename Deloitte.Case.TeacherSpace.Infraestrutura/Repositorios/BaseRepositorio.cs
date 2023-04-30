@@ -108,7 +108,7 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
         /// <returns>A lista de entidades consultadas <see cref="List{T}"/>.</returns>
         public virtual async Task<IEnumerable<TEntidade>> ConsultarLista(int pagina, int quantide_pagina)
         {
-            return await QueryIncludes().AsNoTracking().Skip(quantide_pagina * (pagina - 1)).Take(quantide_pagina).ToListAsync();
+            return await QueryIncludes().OrderBy(o => 1).AsNoTracking().Skip(quantide_pagina * (pagina - 1)).Take(quantide_pagina).ToListAsync();
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
         /// <returns>A lista de entidades consultadas <see cref="List{T}"/>.</returns>
         public virtual async Task<IEnumerable<TEntidade>> ConsultarLista(Expression<Func<TEntidade, bool>> filtroBusca, int pagina, int quantide_pagina, params Expression<Func<TEntidade, object>>[] includes)
         {
-            return await Include(includes).Where(filtroBusca).AsNoTracking().Skip(quantide_pagina * (pagina - 1)).Take(quantide_pagina).ToListAsync();
+            return await Include(includes).Where(filtroBusca).OrderBy(o => 1).AsNoTracking().Skip(quantide_pagina * (pagina - 1)).Take(quantide_pagina).ToListAsync();
         }
 
         protected IQueryable<T> Include<T>(params Expression<Func<T, object>>[] paths)

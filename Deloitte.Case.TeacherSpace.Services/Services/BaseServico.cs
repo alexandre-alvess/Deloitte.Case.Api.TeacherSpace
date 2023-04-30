@@ -14,7 +14,7 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
     /// <typeparam name="TEntidade"></typeparam>
     /// <typeparam name="TRepositorio"></typeparam>
     /// <typeparam name="TValidador"></typeparam>
-    public abstract class BaseServico<TModel, TEntidade, TRepositorio, TValidador> : IBaseService<TModel>
+    public abstract class BaseServico<TModel, TEntidade, TRepositorio, TValidador> : IBaseServico<TModel>
         where TModel : Model.BaseModel
         where TEntidade : EntidadeBase
         where TRepositorio : IBaseRepositorio<TEntidade>
