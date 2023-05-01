@@ -74,7 +74,16 @@ namespace Deloitte.Case.Api.TeacherSpace.Mapeamentos
 
         private static void CriarMapeamentoUsuario(IMapperConfigurationExpression cfg)
         {
-
+            cfg.CreateMap<UsuarioRequest, UsuarioModel>().ReverseMap();
+            cfg.CreateMap<UsuarioResponse, UsuarioModel>().ReverseMap();
+            
+            cfg.CreateMap<Usuario, Pessoa>()
+                .ForMember(x => x.Email, y => y.MapFrom(z => z.Login))
+                .ReverseMap();
+            
+            cfg.CreateMap<Usuario, UsuarioModel>()
+                .ForMember(x => x.Nome, y => y.MapFrom(z => z.Pessoa != null ? z.Pessoa.Nome : string.Empty))
+                .ReverseMap();
         }
     }
 }

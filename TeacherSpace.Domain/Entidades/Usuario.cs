@@ -1,4 +1,6 @@
 ﻿using Deloitte.Case.TeacherSpace.Domain.Entidades.Base;
+using Deloitte.Case.TeacherSpace.Domain.Utilitarios.Enumeradores;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Deloitte.Case.TeacherSpace.Domain.Entidades
 {
@@ -26,5 +28,11 @@ namespace Deloitte.Case.TeacherSpace.Domain.Entidades
         /// Obtém ou define a senha.
         /// </summary>
         public string Senha { get; set; }
+
+        /// <summary>
+        /// Obtém ou define o tipo de perfil do usuário.
+        /// </summary>
+        [NotMapped]
+        public EnumTipoPerfilUsuario TipoPerfil { get; set; }
     }
 }
