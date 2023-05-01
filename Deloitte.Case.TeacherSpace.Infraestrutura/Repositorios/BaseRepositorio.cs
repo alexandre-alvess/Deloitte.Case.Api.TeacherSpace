@@ -33,7 +33,7 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
         }
 
         /// <summary>
-        /// Adiciona a entidae na base de dados.
+        /// Adiciona a entidade na base de dados.
         /// </summary>
         /// <param name="obj">A entidade <see cref="TEntidade"/>.</param>
         /// <returns>A entidade adicionada <see cref="TEntidade"/>.</returns>
