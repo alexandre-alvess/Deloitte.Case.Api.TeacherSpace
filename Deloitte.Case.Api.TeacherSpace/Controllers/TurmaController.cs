@@ -5,7 +5,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
     /// <summary>
     /// Define o controller <see cref="TurmaController"/>.
     /// </summary>
-    [Authorize]
+    [Authorize("Bearer")]
     public class TurmaController //: BaseCrudApiController
     {
     }
