@@ -23,7 +23,17 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "APITeacherSpace", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "APITeacherSpace",
+        Version = "v1",
+        Description = "API desenvolvida para o case técnico da Deloitte em 05/2023",
+        Contact = new OpenApiContact
+        {
+            Name= "Alexandre Alves",
+            Email = "alexandre.alves@testes.com"
+        }
+    });
 
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFile));

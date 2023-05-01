@@ -22,6 +22,7 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
             services.AddScoped<IProfessorServico, ProfessorServico>();
             services.AddScoped<IUsuarioServico, UsuarioServico>();
             services.AddScoped<IDisciplinaServico, DisciplinaServico>();
+            services.AddScoped<ITurmaServico, TurmaServico>();
         }
 
         public static void InicializeRepositorios(IServiceCollection services)
