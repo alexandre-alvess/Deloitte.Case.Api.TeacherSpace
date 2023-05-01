@@ -5,6 +5,7 @@ using Deloitte.Case.TeacherSpace.Core.Models;
 using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
@@ -14,6 +15,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
     /// <summary>
     /// Define o controller <see cref="AlunoController"/>.
     /// </summary>
+    [Authorize]
     public class AlunoController : BaseCrudApiController<AlunoModel, AlunoRequest, AlunoResponse, IAlunoServico>
     {
         /// <summary>

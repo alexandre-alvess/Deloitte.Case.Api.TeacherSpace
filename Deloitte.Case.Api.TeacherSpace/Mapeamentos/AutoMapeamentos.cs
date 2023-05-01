@@ -20,7 +20,6 @@ namespace Deloitte.Case.Api.TeacherSpace.Mapeamentos
             CriarMapeamentoAluno(cfg);
             CriarMapeamentoBoletim(cfg);
             CriarMapeamentoDisciplina(cfg);
-            CriarMapeamentoPessoa(cfg);
             CriarMapeamentoProfessor(cfg);
             CriarMapeamentoTurma(cfg);
             CriarMapeamentoUsuario(cfg);
@@ -46,12 +45,9 @@ namespace Deloitte.Case.Api.TeacherSpace.Mapeamentos
 
         private static void CriarMapeamentoDisciplina(IMapperConfigurationExpression cfg)
         {
-
-        }
-
-        private static void CriarMapeamentoPessoa(IMapperConfigurationExpression cfg)
-        {
-
+            cfg.CreateMap<DisciplinaRequest, DisciplinaModel>().ReverseMap();
+            cfg.CreateMap<DisciplinaResponse, DisciplinaModel>().ReverseMap();
+            cfg.CreateMap<DisciplinaModel, Disciplina>().ReverseMap();
         }
 
         private static void CriarMapeamentoProfessor(IMapperConfigurationExpression cfg)

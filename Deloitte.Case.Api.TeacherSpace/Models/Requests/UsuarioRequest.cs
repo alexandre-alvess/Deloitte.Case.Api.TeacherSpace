@@ -33,6 +33,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Models.Requests
         [Required(AllowEmptyStrings = false)]
         [MinLength(6)]
         [MaxLength(50)]
+        [JsonPropertyName("senha")]
         public string Senha { get; set; }
     }
 }
