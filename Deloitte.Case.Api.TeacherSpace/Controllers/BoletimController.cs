@@ -6,7 +6,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
     /// <summary>
     /// Define o controller <see cref="BoletimController"/>.
     /// </summary>
-    [Authorize]
+    [Authorize("Bearer")]
     public class BoletimController //: BaseCrudApiController
     {
     }

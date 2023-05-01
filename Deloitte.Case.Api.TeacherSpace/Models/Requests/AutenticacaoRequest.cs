@@ -1,23 +1,13 @@
-﻿using Deloitte.Case.Api.TeacherSpace.Models.Bases;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Deloitte.Case.Api.TeacherSpace.Models.Requests
 {
     /// <summary>
-    /// Define a classe <see cref="UsuarioRequest"/>.
+    /// Define a classe <see cref="AutenticacaoRequest"/>.
     /// </summary>
-    public class UsuarioRequest : BaseRequest
+    public class AutenticacaoRequest
     {
-        /// <summary>
-        /// Obtém ou define o nome do usuário.
-        /// </summary>
-        [JsonPropertyName("nome")]
-        [Required(AllowEmptyStrings = false)]
-        [MinLength(3)]
-        [MaxLength(80)]
-        public string Nome { get; set; }
-
         /// <summary>
         /// Obtém ou define o login do usuário.
         /// </summary>

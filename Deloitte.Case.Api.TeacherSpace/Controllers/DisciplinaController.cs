@@ -15,7 +15,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
     /// <summary>
     /// Define o controller <see cref="DisciplinaController"/>.
     /// </summary>
-    //[Authorize]
+    [Authorize("Bearer")]
     public class DisciplinaController : BaseCrudApiController<DisciplinaModel, DisciplinaRequest, DisciplinaResponse, IDisciplinaServico>
     {
         /// <summary>

@@ -1,0 +1,377 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Deloitte.Case.Api.TeacherSpace</name>
+    </assembly>
+    <members>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController">
+            <summary>
+            Define o controller <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController"/>.
+            </summary>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController.#ctor(Deloitte.Case.TeacherSpace.Services.Interfaces.IAlunoServico,AutoMapper.IMapper)">
+            <summary>
+            Inicializa uma nova instância de <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController"/>.
+            </summary>
+            <param name="alunoServico">O serviço de aluno  <see cref="T:Deloitte.Case.TeacherSpace.Services.Interfaces.IAlunoServico"/>.</param>
+            <param name="mapper">O mapper <see cref="T:AutoMapper.IMapper"/>.</param>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController.Adicionar(Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoRequest)">
+            <summary>
+            ADICIONAR.
+            </summary>
+            <param name="request">O request de aluno <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoRequest"/>.</param>
+            <returns>Os dados do aluno registrado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController.Atualizar(Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoRequest)">
+            <summary>
+            ATUALIZAR.
+            </summary>
+            <param name="request">O request de aluno <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoRequest"/>.</param>
+            <returns>Os dados do aluno registrado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController.Consultar(System.Guid)">
+            <summary>
+            CONSULTAR.
+            </summary>
+            <param name="alunoId">O identificador do aluno <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados do aluno consultado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController.ConsultarLista(Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros)">
+            <summary>
+            CONSULTAR LISTA.
+            </summary>
+            <param name="parametros">Os parâmetros para realizar a consulta <see cref="T:Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros"/>.</param>
+            <returns>Os dados do aluno consultados.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController.Inativar(System.Guid)">
+            <summary>
+            INATIVAR.
+            </summary>
+            <param name="alunoId">O identificador do aluno <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados do aluno inativado.</returns>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Controllers.BaseCrudApiController`4">
+            <summary>
+            Define a classe <see cref="!:BaseCrudApiController"/>.
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <typeparam name="TService"></typeparam>
+        </member>
+        <member name="F:Deloitte.Case.Api.TeacherSpace.Controllers.BaseCrudApiController`4._mapper">
+            <summary>
+            Define o mapper.
+            </summary>
+        </member>
+        <member name="F:Deloitte.Case.Api.TeacherSpace.Controllers.BaseCrudApiController`4._servico">
+            <summary>
+            Define o serviço.
+            </summary>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.BaseCrudApiController`4.#ctor(`3,AutoMapper.IMapper)">
+            <summary>
+            Inicializa uma nova instância de <see cref="!:BaseCrudApiController"/>.
+            </summary>
+            <param name="servico">O serviço base do controlador <see cref="!:TService"/>.</param>
+            <param name="mapper">O mapper <see cref="T:AutoMapper.IMapper"/>.</param>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController">
+            <summary>
+            Define o controller <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController"/>.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Controllers.DisciplinaController">
+            <summary>
+            Define o controller <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.DisciplinaController"/>.
+            </summary>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.DisciplinaController.#ctor(Deloitte.Case.TeacherSpace.Services.Interfaces.IDisciplinaServico,AutoMapper.IMapper)">
+            <summary>
+            Inicializa uma nova instância de <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController"/>.
+            </summary>
+            <param name="disciplinaServico">O serviço de disciplina  <see cref="T:Deloitte.Case.TeacherSpace.Services.Interfaces.IDisciplinaServico"/>.</param>
+            <param name="mapper">O mapper <see cref="T:AutoMapper.IMapper"/>.</param>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.DisciplinaController.Adicionar(Deloitte.Case.Api.TeacherSpace.Models.Requests.DisciplinaRequest)">
+            <summary>
+            ADICIONAR.
+            </summary>
+            <param name="request">O request de disciplina <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.DisciplinaRequest"/>.</param>
+            <returns>Os dados da disciplina registrada.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.DisciplinaController.Atualizar(Deloitte.Case.Api.TeacherSpace.Models.Requests.DisciplinaRequest)">
+            <summary>
+            ATUALIZAR.
+            </summary>
+            <param name="request">O request de disciplina <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.DisciplinaRequest"/>.</param>
+            <returns>Os dados da disciplina registrada.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.DisciplinaController.Consultar(System.Guid)">
+            <summary>
+            CONSULTAR.
+            </summary>
+            <param name="disciplinaId">O identificador da disciplina <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados da disciplina consultada.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.DisciplinaController.ConsultarLista(Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros)">
+            <summary>
+            CONSULTAR LISTA.
+            </summary>
+            <param name="parametros">Os parâmetros para realizar a consulta <see cref="T:Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros"/>.</param>
+            <returns>Os dados das disciplinas consultadas.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.DisciplinaController.Inativar(System.Guid)">
+            <summary>
+            INATIVAR.
+            </summary>
+            <param name="disciplinaId">O identificador da disciplina <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados da disciplina inativada.</returns>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Controllers.ProfessorController">
+            <summary>
+            Define o controller <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.ProfessorController"/>.
+            </summary>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.ProfessorController.#ctor(Deloitte.Case.TeacherSpace.Services.Interfaces.IProfessorServico,AutoMapper.IMapper)">
+            <summary>
+            Inicializa uma nova instância de <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.ProfessorController"/>.
+            </summary>
+            <param name="professorService">O serviço de professor  <see cref="T:Deloitte.Case.TeacherSpace.Services.Interfaces.IProfessorServico"/>.</param>
+            <param name="mapper">O mapper <see cref="T:AutoMapper.IMapper"/>.</param>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.ProfessorController.Adicionar(Deloitte.Case.Api.TeacherSpace.Models.Requests.ProfessorRequest)">
+            <summary>
+            ADICIONAR.
+            </summary>
+            <param name="request">O request de professor <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.ProfessorRequest"/>.</param>
+            <returns>Os dados do professor registrado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.ProfessorController.Atualizar(Deloitte.Case.Api.TeacherSpace.Models.Requests.ProfessorRequest)">
+            <summary>
+            ATUALIZAR.
+            </summary>
+            <param name="request">O request de professor <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.ProfessorRequest"/>.</param>
+            <returns>Os dados do professor registrado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.ProfessorController.Consultar(System.Guid)">
+            <summary>
+            CONSULTAR.
+            </summary>
+            <param name="professorId">O identificador do professor <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados do professor consultado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.ProfessorController.ConsultarLista(Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros)">
+            <summary>
+            CONSULTAR LISTA.
+            </summary>
+            <param name="parametros">Os parâmetros para realizar a consulta <see cref="T:Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros"/>.</param>
+            <returns>Os dados dos professores consultados.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.ProfessorController.Inativar(System.Guid)">
+            <summary>
+            INATIVAR.
+            </summary>
+            <param name="professorId">O identificador do professor <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados do professor inativado.</returns>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Controllers.TurmaController">
+            <summary>
+            Define o controller <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.TurmaController"/>.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Controllers.UsuarioController">
+            <summary>
+            Define o controller <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.UsuarioController"/>.
+            </summary>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.UsuarioController.#ctor(Deloitte.Case.TeacherSpace.Services.Interfaces.IUsuarioServico,AutoMapper.IMapper)">
+            <summary>
+            Inicializa uma nova instância de <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.UsuarioController"/>.
+            </summary>
+            <param name="usuarioServico">O serviço de usuário  <see cref="T:Deloitte.Case.TeacherSpace.Services.Interfaces.IUsuarioServico"/>.</param>
+            <param name="mapper">O mapper <see cref="T:AutoMapper.IMapper"/>.</param>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.UsuarioController.Adicionar(Deloitte.Case.Api.TeacherSpace.Models.Requests.UsuarioRequest)">
+            <summary>
+            ADICIONAR.
+            </summary>
+            <param name="request">O request de usuário <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.UsuarioRequest"/>.</param>
+            <returns>Os dados do usuário registrado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.UsuarioController.Atualizar(Deloitte.Case.Api.TeacherSpace.Models.Requests.UsuarioRequest)">
+            <summary>
+            ATUALIZAR.
+            </summary>
+            <param name="request">O request de usuário <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.UsuarioRequest"/>.</param>
+            <returns>Os dados do usuário registrado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.UsuarioController.Consultar(System.Guid)">
+            <summary>
+            CONSULTAR.
+            </summary>
+            <param name="usuarioId">O identificador do usuário <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados do usuário consultado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.UsuarioController.ConsultarLista(Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros)">
+            <summary>
+            CONSULTAR LISTA.
+            </summary>
+            <param name="parametros">Os parâmetros para realizar a consulta <see cref="T:Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros"/>.</param>
+            <returns>Os dados dos usuários consultados.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.UsuarioController.Inativar(System.Guid)">
+            <summary>
+            INATIVAR.
+            </summary>
+            <param name="usuarioId">O identificador do usuário <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados do usuário inativado.</returns>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Mapeamentos.AutoMapeamentos">
+            <summary>
+            Define a configuração dos mapeamentos da aplicação que serão inicializados.
+            </summary>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Mapeamentos.AutoMapeamentos.Inicialize(AutoMapper.IMapperConfigurationExpression)">
+            <summary>
+            Configuração dos mapeamentos da aplicação.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Bases.BaseRequest">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Bases.BaseRequest"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Bases.BaseRequest.Id">
+            <summary>
+            Obtém ou define o identificador da entidade.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Bases.BaseRequest.Ativo">
+            <summary>
+            Obtém ou define se a entidade está ativa.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Bases.BaseResponse">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Bases.BaseResponse"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Bases.BaseResponse.Id">
+            <summary>
+            Obtém ou define o identificador da entidade.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Bases.BaseResponse.Ativo">
+            <summary>
+            Obtém ou define se a entidade está ativa.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Bases.PessoaBase">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Bases.PessoaBase"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Bases.PessoaBase.Nome">
+            <summary>
+            Obtém ou define o nome.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Bases.PessoaBase.Email">
+            <summary>
+            Obtém ou define o email.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Bases.PessoaBase.DataNascimento">
+            <summary>
+            Obtém ou define a data de nascimento.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoRequest">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoRequest"/>.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.DisciplinaRequest">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.DisciplinaRequest"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Requests.DisciplinaRequest.Nome">
+            <summary>
+            Obtém ou define o nome da disciplina.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Requests.DisciplinaRequest.CargaHoraria">
+            <summary>
+            Obtém ou define a carga horária da disciplina.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.ProfessorRequest">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.ProfessorRequest"/>.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.UsuarioRequest">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.UsuarioRequest"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Requests.UsuarioRequest.Nome">
+            <summary>
+            Obtém ou define o nome do usuário.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Requests.UsuarioRequest.Login">
+            <summary>
+            Obtém ou define o login do usuário.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Requests.UsuarioRequest.Senha">
+            <summary>
+            Obtém ou define a senha do usuário.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoResponse">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoResponse"/>.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.DisciplinaResponse">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.DisciplinaResponse"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.DisciplinaResponse.Nome">
+            <summary>
+            Obtém ou define o nome da disciplina.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.DisciplinaResponse.CargaHoraria">
+            <summary>
+            Obtém ou define a carga horária da disciplina.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.ProfessorResponse">
+            <summary>
+            Define a classe <see cref="!:AlunoRequest"/>.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.UsuarioResponse">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.UsuarioResponse"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.UsuarioResponse.Nome">
+            <summary>
+            Obtém ou define o nome do usuário.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.UsuarioResponse.Login">
+            <summary>
+            Obtém ou define o login do usuário.
+            </summary>
+        </member>
+    </members>
+</doc>

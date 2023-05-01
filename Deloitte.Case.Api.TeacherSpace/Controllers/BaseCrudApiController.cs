@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using Deloitte.Case.Api.TeacherSpace.Models.Bases;
-using Deloitte.Case.TeacherSpace.Core.Enumeradores;
-using Deloitte.Case.TeacherSpace.Core.Models;
 using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Model;
@@ -17,9 +15,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
     /// <typeparam name="TRequest"></typeparam>
     /// <typeparam name="TResponse"></typeparam>
     /// <typeparam name="TService"></typeparam>
-    [Route("v1/[controller]")]
-    [ApiController]
-    public abstract class BaseCrudApiController<TModel, TRequest, TResponse, TService> : ControllerBase
+    public abstract class BaseCrudApiController<TModel, TRequest, TResponse, TService> : BaseApiController
         where TModel : BaseModel
         where TRequest : BaseRequest
         where TResponse : class
@@ -87,19 +83,6 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         {
             var resultado = await _servico.ConsultarLista(parametros.Pagina, parametros.Quantidade);
             return Ok(_mapper.Map<IEnumerable<TModel>, IEnumerable<TResponse>>(resultado));
-        }
-
-        protected ActionResult Error(string codigoErro, string mensagemErro, HttpStatusCode status, EnumApiErroTipo tipoErro = EnumApiErroTipo.Negocio)
-        {
-            return new ObjectResult(ApiErrorMessage.Erro(new ApiErroMessageItem(codigoErro, mensagemErro, tipoErro)))
-            {
-                StatusCode = (int)status
-            };
-        }
-
-        protected virtual string FormateErrosModelState()
-        {
-            return string.Join(", ", ModelState.SelectMany(x => x.Value.Errors.Select(y => y.ErrorMessage)));
         }
     }
 }

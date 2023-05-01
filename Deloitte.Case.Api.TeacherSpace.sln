@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deloitte.Case.TeacherSpace.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Core", "05 - Core", "{83E15C1E-0FD4-41F9-90C9-B2F528894DA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deloitte.Case.TeacherSpace.Core", "Deloitte.Case.TeacherSpace.Core\Deloitte.Case.TeacherSpace.Core.csproj", "{0886BAAC-1551-49BE-A387-3A8AC6384EE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deloitte.Case.TeacherSpace.Core", "Deloitte.Case.TeacherSpace.Core\Deloitte.Case.TeacherSpace.Core.csproj", "{0886BAAC-1551-49BE-A387-3A8AC6384EE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
