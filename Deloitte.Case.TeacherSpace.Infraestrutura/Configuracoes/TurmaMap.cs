@@ -12,17 +12,16 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Configuracoes
         internal override void ConfiguradorInterno(EntityTypeBuilder<Turma> builder)
         {
             builder
-                .ToTable("Turma")
+                .ToTable("Turmas")
                 .HasKey(e => e.Id);
 
             builder
                 .HasMany(e => e.Alunos)
                 .WithMany(e => e.Turmas)
-                .UsingEntity(
-                    "AlunoTurma",
-                    l => l.HasOne(typeof(Aluno)).WithMany().HasForeignKey("AlunosId").HasPrincipalKey(nameof(Aluno.Id)),
-                    r => r.HasOne(typeof(Turma)).WithMany().HasForeignKey("TurmasId").HasForeignKey(nameof(Turma.Id)),
-                    j => j.HasKey("TurmasId", "AlunosId"));
+                .UsingEntity<AlunoTurma>(
+                    l => l.HasOne<Aluno>(e => e.Aluno).WithMany(e => e.AlunoTurmas),
+                    r => r.HasOne<Turma>(e => e.Turma).WithMany(e => e.AlunoTurmas),
+                    j => j.Property(e => e.Ativo).HasDefaultValue(true));
 
             builder
                 .Property(e => e.Nome)

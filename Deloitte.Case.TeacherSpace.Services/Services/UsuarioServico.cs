@@ -49,7 +49,7 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
                 x.Login.ToUpper() == autenticacaoModel.Login.ToUpper() &&
                 x.Ativo);
 
-            return usuario != null && usuario.Senha.Decrypt() == autenticacaoModel.Senha
+            return usuario != null && usuario.Senha == autenticacaoModel.Senha
                 ? DataResult<bool>.Successo(true)
                 : DataResult<bool>.Falha("Login ou senha inválida.");
         }
@@ -108,12 +108,12 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
             entidade.Pessoa.Id = Guid.NewGuid();
             entidade.TipoPerfil = EnumTipoPerfilUsuario.Professor;
             entidade.Pessoa.Nome = model.Nome;
-            entidade.Senha = Criptografia.Encrypt(entidade.Senha);
+            //entidade.Senha = Criptografia.Encrypt(entidade.Senha);
         }
 
-        protected override void AntesDeAtualizar(UsuarioModel model, Usuario entidade)
-        {
-            entidade.Senha = Criptografia.Encrypt(entidade.Senha);
-        }
+        //protected override void AntesDeAtualizar(UsuarioModel model, Usuario entidade)
+        //{
+        //    entidade.Senha = Criptografia.Encrypt(entidade.Senha);
+        //}
     }
 }

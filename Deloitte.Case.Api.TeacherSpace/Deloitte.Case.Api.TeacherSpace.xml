@@ -229,6 +229,13 @@
             <param name="request">O request de turma <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.TurmaRequest"/>.</param>
             <returns>Os dados da turma registrada.</returns>
         </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.TurmaController.AdicionarAluno(Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoTurmaRequest)">
+            <summary>
+            ADICIONAR ALUNO.
+            </summary>
+            <param name="request">O request do aluno para ser registrado na turma <see cref="!:"/>.</param>
+            <returns>Os dados do aluno registrado na turma.</returns>
+        </member>
         <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.TurmaController.Atualizar(Deloitte.Case.Api.TeacherSpace.Models.Requests.TurmaRequest)">
             <summary>
             ATUALIZAR.
@@ -256,6 +263,13 @@
             </summary>
             <param name="turmaId">O identificador da turma <see cref="T:System.Guid"/>.</param>
             <returns>Os dados da turma inativada.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.TurmaController.InativarAluno(Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoTurmaRequest)">
+            <summary>
+            INATIVAR ALUNO.
+            </summary>
+            <param name="request">O request do aluno para ser inativado na turma <see cref="!:"/>.</param>
+            <returns>Os dados do aluno inativado na turma.</returns>
         </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Controllers.UsuarioController">
             <summary>
@@ -369,6 +383,21 @@
             Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoRequest"/>.
             </summary>
         </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoTurmaRequest">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoTurmaRequest"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoTurmaRequest.AlunoId">
+            <summary>
+            Obtém ou define o identificador do aluno.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoTurmaRequest.TurmaId">
+            <summary>
+            Obtém ou define o identificador da turma.
+            </summary>
+        </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.AutenticacaoRequest">
             <summary>
             Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.AutenticacaoRequest"/>.
@@ -449,6 +478,21 @@
             Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoResponse"/>.
             </summary>
         </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoTurmaResponse">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoTurmaResponse"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoTurmaResponse.AlunoId">
+            <summary>
+            Obtém ou define o identificador do aluno.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoTurmaResponse.TurmaId">
+            <summary>
+            Obtém ou define o identificador da turma.
+            </summary>
+        </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AutenticacaoResponse">
             <summary>
             Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AutenticacaoResponse"/>.
@@ -481,7 +525,7 @@
         </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaResponse">
             <summary>
-            Define a classe <see cref="!:TurmaRequest"/>.
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaResponse"/>.
             </summary>
         </member>
         <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaResponse.Nome">
@@ -497,6 +541,11 @@
         <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaResponse.Disciplina">
             <summary>
             Obtém ou define a disciplina da turma.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaResponse.Alunos">
+            <summary>
+            Obtém ou define a lista de alunos da turma.
             </summary>
         </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.UsuarioResponse">

@@ -5,6 +5,7 @@ using Deloitte.Case.TeacherSpace.Core.Models;
 using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Model;
+using Deloitte.Case.TeacherSpace.Services.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -47,6 +48,34 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
             }
 
             return await AdicionarInterno(request);
+        }
+
+        /// <summary>
+        /// ADICIONAR ALUNO.
+        /// </summary>
+        /// <param name="request">O request do aluno para ser registrado na turma <see cref=""/>.</param>
+        /// <returns>Os dados do aluno registrado na turma.</returns>
+        [HttpPost("AdicionarAluno")]
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        [ProducesResponseType(typeof(AlunoTurmaResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> AdicionarAluno([Required, FromBody] AlunoTurmaRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Error("BadRequest", FormateErrosModelState(), HttpStatusCode.BadRequest);
+            }
+
+            var model = _mapper.Map<AlunoTurmaRequest, AlunoTurmaModel>(request);
+            var alunoTurmaResultado = await _servico.AdicionarAluno(model);
+
+            if (!alunoTurmaResultado.StatusOk)
+                return Error("InternalServerError", string.Join(", ", alunoTurmaResultado.Erros), HttpStatusCode.InternalServerError);
+
+            return Ok(_mapper.Map<AlunoTurmaModel, AlunoTurmaResponse>(alunoTurmaResultado.Dado));
         }
 
         /// <summary>
@@ -120,6 +149,34 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         public async Task<IActionResult> Inativar([Required, FromQuery] Guid turmaId)
         {
             return await InativarInterno(turmaId);
+        }
+
+        /// <summary>
+        /// INATIVAR ALUNO.
+        /// </summary>
+        /// <param name="request">O request do aluno para ser inativado na turma <see cref=""/>.</param>
+        /// <returns>Os dados do aluno inativado na turma.</returns>
+        [HttpDelete("InativarAluno")]
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        [ProducesResponseType(typeof(AlunoTurmaResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> InativarAluno([Required, FromBody] AlunoTurmaRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Error("BadRequest", FormateErrosModelState(), HttpStatusCode.BadRequest);
+            }
+
+            var model = _mapper.Map<AlunoTurmaRequest, AlunoTurmaModel>(request);
+            var alunoTurmaResultado = await _servico.InativarAluno(model);
+
+            if (!alunoTurmaResultado.StatusOk)
+                return Error("InternalServerError", string.Join(", ", alunoTurmaResultado.Erros), HttpStatusCode.InternalServerError);
+
+            return Ok(_mapper.Map<AlunoTurmaModel, AlunoTurmaResponse>(alunoTurmaResultado.Dado));
         }
     }
 }

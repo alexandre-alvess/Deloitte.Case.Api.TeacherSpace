@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace Deloitte.Case.Api.TeacherSpace.Models.Responses
 {
     /// <summary>
-    /// Define a classe <see cref="TurmaRequest"/>.
+    /// Define a classe <see cref="TurmaResponse"/>.
     /// </summary>
     public class TurmaResponse : BaseResponse
     {
@@ -25,5 +25,11 @@ namespace Deloitte.Case.Api.TeacherSpace.Models.Responses
         /// </summary>
         [JsonPropertyName("disciplina")]
         public DisciplinaResponse Disciplina { get; set; }
+
+        /// <summary>
+        /// Obtém ou define a lista de alunos da turma.
+        /// </summary>
+        [JsonPropertyName("alunos")]
+        public ICollection<AlunoResponse> Alunos { get; set; }
     }
 }

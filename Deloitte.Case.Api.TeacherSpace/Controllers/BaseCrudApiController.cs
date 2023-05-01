@@ -24,7 +24,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         /// <summary>
         /// Define o mapper.
         /// </summary>
-        private readonly IMapper _mapper;
+        protected readonly IMapper _mapper;
 
         /// <summary>
         /// Define o serviço.
