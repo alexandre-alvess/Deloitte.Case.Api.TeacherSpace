@@ -1,9 +1,9 @@
 ﻿namespace Deloitte.Case.Api.TeacherSpace.Models.Bases
 {
     /// <summary>
-    /// Define a classe <see cref="BaseRequest"/>.
+    /// Define a classe <see cref="BaseResponse"/>.
     /// </summary>
-    public abstract class BaseRequest
+    public abstract class BaseResponse
     {
         /// <summary>
         /// Obtém ou define o identificador da entidade.
