@@ -12,7 +12,7 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Configuracoes
         internal override void ConfiguradorInterno(EntityTypeBuilder<Pessoa> builder)
         {
             builder
-                .ToTable("Pessoa")
+                .ToTable("Pessoas")
                 .HasKey(e => e.Id);
 
             builder

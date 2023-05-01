@@ -16,7 +16,7 @@
         /// <summary>
         /// Obtém ou define o identificador da entidade.
         /// </summary>
-        public Guid Id { get; set; }
+        public virtual Guid Id { get; set; }
 
         /// <summary>
         /// Obtém ou define se a entidade está ativa.

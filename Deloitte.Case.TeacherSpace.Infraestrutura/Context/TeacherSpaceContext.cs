@@ -18,6 +18,7 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Context
         public virtual DbSet<Professor> Professores { get; set; }
         public virtual DbSet<Turma> Turmas { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<AlunoTurma> AlunoTurmas { get; set; }
 
         public TeacherSpaceContext()
         {
@@ -29,7 +30,13 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new AlunoMap());
+            new AlunoMap().Configure(builder.Entity<Aluno>());
+            new BoletimMap().Configure(builder.Entity<Boletim>());
+            new DisciplinaMap().Configure(builder.Entity<Disciplina>());
+            new PessoaMap().Configure(builder.Entity<Pessoa>());
+            new ProfessorMap().Configure(builder.Entity<Professor>());
+            new TurmaMap().Configure(builder.Entity<Turma>());
+            new UsuarioMap().Configure(builder.Entity<Usuario>());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -26,5 +26,10 @@ namespace Deloitte.Case.TeacherSpace.Domain.Entidades
         /// Obtém ou define a lista de turmas do aluno.
         /// </summary>
         public virtual ICollection<Turma> Turmas { get; set; }
+
+        /// <summary>
+        /// Obtém ou define a lista de turmas do aluno.
+        /// </summary>
+        public virtual ICollection<AlunoTurma> AlunoTurmas { get; set; }
     }
 }

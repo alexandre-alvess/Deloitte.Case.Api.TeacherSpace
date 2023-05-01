@@ -67,6 +67,10 @@ namespace Deloitte.Case.Api.TeacherSpace.Mapeamentos
 
         private static void CriarMapeamentoTurma(IMapperConfigurationExpression cfg)
         {
+            cfg.CreateMap<AlunoTurmaRequest, AlunoTurmaModel>().ReverseMap();
+            cfg.CreateMap<AlunoTurmaResponse, AlunoTurmaModel>().ReverseMap();
+            cfg.CreateMap<AlunoTurmaModel, AlunoTurma>().ReverseMap();
+
             cfg.CreateMap<TurmaRequest, TurmaModel>().ReverseMap();
             cfg.CreateMap<TurmaResponse, TurmaModel>().ReverseMap();
             cfg.CreateMap<Turma, TurmaModel>();
