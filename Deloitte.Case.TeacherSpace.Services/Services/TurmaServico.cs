@@ -4,7 +4,6 @@ using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
 using Deloitte.Case.TeacherSpace.Domain.Validadores;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
-using Deloitte.Case.TeacherSpace.Services.Model;
 using Deloitte.Case.TeacherSpace.Services.Models;
 
 namespace Deloitte.Case.TeacherSpace.Services.Services
@@ -71,10 +70,25 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
                 : DataResult<AlunoTurmaModel>.Falha(resultado.Erros);
         }
 
-        protected override void AntesDeAtualizar(TurmaModel model, Turma entidade)
+        /// <summary>
+        /// Consulta as turmas vinculadas ao professor.
+        /// </summary>
+        /// <param name="id">O identificador do professor <see cref="Guid"/>.</param>
+        /// <param name="pagina">A pagina a ser consultada <see cref="int"/>.</param>
+        /// <param name="quantide_pagina">A quantidade de elementos para ser consultada por página <see cref="int"/>.</param>
+        /// <returns>As turmas vinculadas ao professor informado <see cref="TModel"/>.</returns>
+        public async Task<IEnumerable<TurmaModel>> ConsultarPorProfessor(Guid professorId, int pagina, int quantide_pagina)
+        {
+            var entidade = await _repositorio.ConsultarLista(x => x.ProfessorId == professorId, pagina, quantide_pagina);
+            return _mapper.Map<IEnumerable<Turma>, IEnumerable<TurmaModel>>(entidade);
+        }
+
+        protected override Task<DataResult<TurmaModel>> AntesDeAtualizar(TurmaModel model, Turma entidade)
         {
             entidade.DisciplinaId = entidade.Disciplina.Id;
             entidade.ProfessorId = entidade.Professor.Id;
+
+            return Task.FromResult(DataResult<TurmaModel>.Successo(model));
         }
 
         private async Task<DataResult<bool>> ValideAlunoTurma(AlunoTurmaModel model)

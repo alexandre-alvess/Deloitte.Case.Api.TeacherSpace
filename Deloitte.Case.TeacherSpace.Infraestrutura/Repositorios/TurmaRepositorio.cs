@@ -44,7 +44,7 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
         /// <returns>Se o aluno está registrado na turma <see cref="bool"/>.</returns>
         public async Task<bool> ExisteAluno(Guid alunoId, Guid turmaId)
         {
-            return await _context.AlunoTurmas.AsNoTracking().AnyAsync(x => x.AlunoId == alunoId && x.TurmaId == turmaId);
+            return await _context.AlunoTurmas.AsNoTracking().AnyAsync(x => x.AlunoId == alunoId && x.TurmaId == turmaId && x.Ativo);
         }
 
         /// <summary>

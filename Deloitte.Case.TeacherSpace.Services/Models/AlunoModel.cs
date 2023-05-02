@@ -1,6 +1,4 @@
-﻿using Deloitte.Case.TeacherSpace.Services.Model;
-
-namespace Deloitte.Case.TeacherSpace.Services.Model
+﻿namespace Deloitte.Case.TeacherSpace.Services.Models
 {
     /// <summary>
     /// Define a classe <see cref="AlunoModel"/>.

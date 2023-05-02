@@ -15,7 +15,7 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
     /// <typeparam name="TRepositorio"></typeparam>
     /// <typeparam name="TValidador"></typeparam>
     public abstract class BaseServico<TModel, TEntidade, TRepositorio, TValidador> : IBaseServico<TModel>
-        where TModel : Model.BaseModel
+        where TModel : Models.BaseModel
         where TEntidade : EntidadeBase
         where TRepositorio : IBaseRepositorio<TEntidade>
         where TValidador : AbstractValidator<TEntidade>
@@ -46,7 +46,9 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
             var entidade = _mapper.Map<TModel, TEntidade>(model);
             entidade.Ativo = true;
 
-            AntesDeAdicionar(model, entidade);
+            var antesAdicionar = await AntesDeAdicionar(model, entidade);
+            if (!antesAdicionar.StatusOk)
+                return DataResult<TModel>.Falha(antesAdicionar.Erros);
 
             var validacao = ValidarEntidade(entidade);
             if (!validacao.StatusOk)
@@ -58,7 +60,9 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
             if (!resultado.StatusOk)
                 return DataResult<TModel>.Falha(resultado.Erros);
 
-            DepoisDeAdicionar(model, entidade);
+            var depoisAdicionar = await DepoisDeAdicionar(model, entidade);
+            if (!depoisAdicionar.StatusOk)
+                return DataResult<TModel>.Falha(depoisAdicionar.Erros);
 
             _mapper.Map(entidade, model);
 
@@ -101,7 +105,10 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
                 return DataResult<TModel>.Falha("Registro não encontrado para o id informado.");
 
             _mapper.Map(model, entidade);
-            AntesDeAtualizar(model, entidade);
+            
+            var antesAtualizar = await AntesDeAtualizar(model, entidade);
+            if (!antesAtualizar.StatusOk)
+                return DataResult<TModel>.Falha(antesAtualizar.Erros);
 
             var validacao = ValidarEntidade(entidade);
             if (!validacao.StatusOk)
@@ -111,7 +118,9 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
             if (!resultado.StatusOk)
                 return DataResult<TModel>.Falha(resultado.Erros);
 
-            DepoisDeAtualizar(model, entidade);
+            var depoisAtualizar = await DepoisDeAtualizar(model, entidade);
+            if (!depoisAtualizar.StatusOk)
+                return DataResult<TModel>.Falha(depoisAtualizar.Erros);
 
             _mapper.Map(entidade, model);
 
@@ -138,20 +147,24 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
                 : DataResult<TModel>.Falha(resultado.Erros);
         }
 
-        protected virtual void AntesDeAdicionar(TModel model, TEntidade entidade)
+        protected virtual Task<DataResult<TModel>> AntesDeAdicionar(TModel model, TEntidade entidade)
         {
+            return Task.FromResult(DataResult<TModel>.Successo(model));
         }
 
-        protected virtual void AntesDeAtualizar(TModel model, TEntidade entidade)
+        protected virtual Task<DataResult<TModel>> AntesDeAtualizar(TModel model, TEntidade entidade)
         {
+            return Task.FromResult(DataResult<TModel>.Successo(model));
         }
 
-        protected virtual void DepoisDeAdicionar(TModel model, TEntidade entidade)
+        protected virtual Task<DataResult<TModel>> DepoisDeAdicionar(TModel model, TEntidade entidade)
         {
+            return Task.FromResult(DataResult<TModel>.Successo(model));
         }
 
-        protected virtual void DepoisDeAtualizar(TModel model, TEntidade entidade)
+        protected virtual Task<DataResult<TModel>> DepoisDeAtualizar(TModel model, TEntidade entidade)
         {
+            return Task.FromResult(DataResult<TModel>.Successo(model));
         }
 
         protected virtual DataResult<TEntidade> ValidarEntidade(TEntidade entidade)

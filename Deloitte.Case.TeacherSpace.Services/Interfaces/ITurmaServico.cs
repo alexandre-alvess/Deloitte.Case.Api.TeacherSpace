@@ -1,5 +1,4 @@
 ﻿using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
-using Deloitte.Case.TeacherSpace.Services.Model;
 using Deloitte.Case.TeacherSpace.Services.Models;
 
 namespace Deloitte.Case.TeacherSpace.Services.Interfaces
@@ -22,5 +21,14 @@ namespace Deloitte.Case.TeacherSpace.Services.Interfaces
         /// <param name="model">O model de aluno para inativar na turma.</param>
         /// <returns>O aluno inativado na turma.</returns>
         Task<DataResult<AlunoTurmaModel>> InativarAluno(AlunoTurmaModel model);
+
+        /// <summary>
+        /// Consulta as turmas vinculadas ao professor.
+        /// </summary>
+        /// <param name="id">O identificador do professor <see cref="Guid"/>.</param>
+        /// <param name="pagina">A pagina a ser consultada <see cref="int"/>.</param>
+        /// <param name="quantide_pagina">A quantidade de elementos para ser consultada por página <see cref="int"/>.</param>
+        /// <returns>As turmas vinculadas ao professor informado <see cref="TModel"/>.</returns>
+        Task<IEnumerable<TurmaModel>> ConsultarPorProfessor(Guid professorId, int pagina, int quantide_pagina);
     }
 }

@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using Deloitte.Case.TeacherSpace.Domain.Entidades;
+using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
 using Deloitte.Case.TeacherSpace.Domain.Validadores;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
-using Deloitte.Case.TeacherSpace.Services.Model;
+using Deloitte.Case.TeacherSpace.Services.Models;
 
 namespace Deloitte.Case.TeacherSpace.Services.Services
 {
@@ -21,18 +22,22 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
         {
         }
 
-        protected override void AntesDeAdicionar(AlunoModel model, Aluno entidade)
+        protected override Task<DataResult<AlunoModel>> AntesDeAdicionar(AlunoModel model, Aluno entidade)
         {
             entidade.Pessoa = _mapper.Map<Aluno, Pessoa>(entidade);
             entidade.Pessoa.Id = Guid.NewGuid();
+            
+            return Task.FromResult(DataResult<AlunoModel>.Successo(model));
         }
 
-        protected override void AntesDeAtualizar(AlunoModel model, Aluno entidade)
+        protected override Task<DataResult<AlunoModel>> AntesDeAtualizar(AlunoModel model, Aluno entidade)
         {
             var pessoaId = entidade.Pessoa.Id;
 
             entidade.Pessoa = _mapper.Map<Aluno, Pessoa>(entidade);
             entidade.Pessoa.Id = pessoaId;
+
+            return Task.FromResult(DataResult<AlunoModel>.Successo(model));
         }
     }
 }

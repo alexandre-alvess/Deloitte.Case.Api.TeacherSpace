@@ -4,7 +4,6 @@ using Deloitte.Case.Api.TeacherSpace.Models.Responses;
 using Deloitte.Case.TeacherSpace.Core.Models;
 using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
-using Deloitte.Case.TeacherSpace.Services.Model;
 using Deloitte.Case.TeacherSpace.Services.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -53,7 +52,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         /// <summary>
         /// ADICIONAR ALUNO.
         /// </summary>
-        /// <param name="request">O request do aluno para ser registrado na turma <see cref=""/>.</param>
+        /// <param name="request">O request do aluno para ser registrado na turma <see cref="AlunoTurmaRequest"/>.</param>
         /// <returns>Os dados do aluno registrado na turma.</returns>
         [HttpPost("AdicionarAluno")]
         [Produces("application/json")]
@@ -118,6 +117,25 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         }
 
         /// <summary>
+        /// CONSULTAR POR PROFESSOR.
+        /// </summary>
+        /// <param name="professorId">O identificador do professor <see cref="Guid"/>.</param>
+        /// <param name="parametros">Os parâmetros para realizar a consulta <see cref="ApiParametros"/>.</param>
+        /// <returns>Os dados da turma consultada.</returns>
+        [HttpGet("ConsultarPorProfessor")]
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        [ProducesResponseType(typeof(TurmaResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> ConsultarPorProfessor([Required, FromQuery] Guid professorId, [Required, FromQuery] ApiParametros parametros)
+        {
+            var resultado = await _servico.ConsultarPorProfessor(professorId, parametros.Pagina, parametros.Quantidade);
+            return Ok(_mapper.Map<IEnumerable<TurmaModel>, IEnumerable<TurmaResponse>>(resultado));
+        }
+
+        /// <summary>
         /// CONSULTAR LISTA.
         /// </summary>
         /// <param name="parametros">Os parâmetros para realizar a consulta <see cref="ApiParametros"/>.</param>
@@ -154,7 +172,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         /// <summary>
         /// INATIVAR ALUNO.
         /// </summary>
-        /// <param name="request">O request do aluno para ser inativado na turma <see cref=""/>.</param>
+        /// <param name="request">O request do aluno para ser inativado na turma <see cref="AlunoTurmaRequest"/>.</param>
         /// <returns>Os dados do aluno inativado na turma.</returns>
         [HttpDelete("InativarAluno")]
         [Produces("application/json")]

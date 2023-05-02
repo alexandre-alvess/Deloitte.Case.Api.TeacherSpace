@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using Deloitte.Case.TeacherSpace.Core;
 using Deloitte.Case.TeacherSpace.Domain.Entidades;
 using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
 using Deloitte.Case.TeacherSpace.Domain.Utilitarios.Enumeradores;
 using Deloitte.Case.TeacherSpace.Domain.Validadores;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
-using Deloitte.Case.TeacherSpace.Services.Model;
 using Deloitte.Case.TeacherSpace.Services.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -102,18 +100,14 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
             return DataResult<string>.Successo(tokenHandler.WriteToken(token));
         }
 
-        protected override void AntesDeAdicionar(UsuarioModel model, Usuario entidade)
+        protected override Task<DataResult<UsuarioModel>> AntesDeAdicionar(UsuarioModel model, Usuario entidade)
         {
             entidade.Pessoa = _mapper.Map<Usuario, Pessoa>(entidade);
             entidade.Pessoa.Id = Guid.NewGuid();
             entidade.TipoPerfil = EnumTipoPerfilUsuario.Professor;
             entidade.Pessoa.Nome = model.Nome;
-            //entidade.Senha = Criptografia.Encrypt(entidade.Senha);
+            
+            return Task.FromResult(DataResult<UsuarioModel>.Successo(model));
         }
-
-        //protected override void AntesDeAtualizar(UsuarioModel model, Usuario entidade)
-        //{
-        //    entidade.Senha = Criptografia.Encrypt(entidade.Senha);
-        //}
     }
 }

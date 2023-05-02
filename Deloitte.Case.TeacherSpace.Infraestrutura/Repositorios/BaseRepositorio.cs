@@ -19,7 +19,7 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
         /// <summary>
         /// Define o contexto da base de dados.
         /// </summary>
-        protected readonly TeacherSpaceContext _context;
+        protected TeacherSpaceContext _context;
 
         /// <summary>
         /// Inicializa uma nova instância de <see cref="BaseRepositorio"/>.
@@ -30,6 +30,21 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
         {
             _context = context;
             _includes = includes;
+        }
+
+        /// <summary>
+        /// Define o contexto do banco de dados.
+        /// </summary>
+        public TeacherSpaceContext DbContext
+        {
+            get
+            {
+                return _context;
+            }
+            set
+            {
+                _context = value;
+            }
         }
 
         /// <summary>
