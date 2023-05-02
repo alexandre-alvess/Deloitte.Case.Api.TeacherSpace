@@ -116,6 +116,56 @@
             Define o controller <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController"/>.
             </summary>
         </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController.#ctor(Deloitte.Case.TeacherSpace.Services.Interfaces.IBoletimServico,AutoMapper.IMapper)">
+            <summary>
+            Inicializa uma nova instância de <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController"/>.
+            </summary>
+            <param name="boletimServico">O serviço de boletim  <see cref="T:Deloitte.Case.TeacherSpace.Services.Interfaces.IBoletimServico"/>.</param>
+            <param name="mapper">O mapper <see cref="T:AutoMapper.IMapper"/>.</param>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController.Adicionar(Deloitte.Case.Api.TeacherSpace.Models.Requests.BoletimRequest)">
+            <summary>
+            ADICIONAR.
+            </summary>
+            <param name="request">O request de boletim <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.BoletimRequest"/>.</param>
+            <returns>Os dados do boletim registrado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController.Atualizar(Deloitte.Case.Api.TeacherSpace.Models.Requests.BoletimRequest)">
+            <summary>
+            ATUALIZAR.
+            </summary>
+            <param name="request">O request de boletim <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.BoletimRequest"/>.</param>
+            <returns>Os dados do boletim registrado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController.Consultar(System.Guid)">
+            <summary>
+            CONSULTAR.
+            </summary>
+            <param name="boletimId">O identificador do boletim <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados do boletim consultado.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController.ConsultarLista(Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros)">
+            <summary>
+            CONSULTAR LISTA.
+            </summary>
+            <param name="parametros">Os parâmetros para realizar a consulta <see cref="T:Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros"/>.</param>
+            <returns>Os dados dos boletins consultados.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController.ConsultarListaPorTurma(System.Guid)">
+            <summary>
+            CONSULTAR LISTA POR TURMA.
+            </summary>
+            <param name="turmaId">O identificador da turma <see cref="T:System.Guid"/>.</param>
+            <param name="parametros">Os parâmetros para realizar a consulta <see cref="T:Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros"/>.</param>
+            <returns>Os boletins da turma.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController.Inativar(System.Guid)">
+            <summary>
+            INATIVAR.
+            </summary>
+            <param name="boletimId">O identificador do boletim <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados do boletim inativado.</returns>
+        </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Controllers.DisciplinaController">
             <summary>
             Define o controller <see cref="T:Deloitte.Case.Api.TeacherSpace.Controllers.DisciplinaController"/>.
@@ -233,7 +283,7 @@
             <summary>
             ADICIONAR ALUNO.
             </summary>
-            <param name="request">O request do aluno para ser registrado na turma <see cref="!:"/>.</param>
+            <param name="request">O request do aluno para ser registrado na turma <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoTurmaRequest"/>.</param>
             <returns>Os dados do aluno registrado na turma.</returns>
         </member>
         <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.TurmaController.Atualizar(Deloitte.Case.Api.TeacherSpace.Models.Requests.TurmaRequest)">
@@ -248,6 +298,14 @@
             CONSULTAR.
             </summary>
             <param name="turmaId">O identificador da turma <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados da turma consultada.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.TurmaController.ConsultarPorProfessor(System.Guid,Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros)">
+            <summary>
+            CONSULTAR POR PROFESSOR.
+            </summary>
+            <param name="professorId">O identificador do professor <see cref="T:System.Guid"/>.</param>
+            <param name="parametros">Os parâmetros para realizar a consulta <see cref="T:Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros"/>.</param>
             <returns>Os dados da turma consultada.</returns>
         </member>
         <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.TurmaController.ConsultarLista(Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros)">
@@ -268,7 +326,7 @@
             <summary>
             INATIVAR ALUNO.
             </summary>
-            <param name="request">O request do aluno para ser inativado na turma <see cref="!:"/>.</param>
+            <param name="request">O request do aluno para ser inativado na turma <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.AlunoTurmaRequest"/>.</param>
             <returns>Os dados do aluno inativado na turma.</returns>
         </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Controllers.UsuarioController">
@@ -413,6 +471,31 @@
             Obtém ou define a senha do usuário.
             </summary>
         </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.BoletimRequest">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.BoletimRequest"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Requests.BoletimRequest.DataEntrega">
+            <summary>
+            Obtém ou define a data de entrega do boletim.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Requests.BoletimRequest.Nota">
+            <summary>
+            Obtém ou define a nota do boletim.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Requests.BoletimRequest.AlunoId">
+            <summary>
+            Obtém ou define o identificador do aluno.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Requests.BoletimRequest.TurmaId">
+            <summary>
+            Obtém ou define o identificador da Turma.
+            </summary>
+        </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.DisciplinaRequest">
             <summary>
             Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Requests.DisciplinaRequest"/>.
@@ -473,6 +556,26 @@
             Obtém ou define a senha do usuário.
             </summary>
         </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoBoletimResponse">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoBoletimResponse"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoBoletimResponse.AlunoId">
+            <summary>
+            Obtém ou define o identificador do aluno.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoBoletimResponse.Aluno">
+            <summary>
+            Obtém ou define o nome do aluno.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoBoletimResponse.NotasBoletim">
+            <summary>
+            Obtém ou define a lista de boletins do aluno.
+            </summary>
+        </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoResponse">
             <summary>
             Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoResponse"/>.
@@ -503,6 +606,31 @@
             Obtém ou define o token de autenticação.
             </summary>
         </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse.DataEntrega">
+            <summary>
+            Obtém ou define a data de entrega do boletim.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse.Nota">
+            <summary>
+            Obtém ou define a nota do boletim.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse.AlunoId">
+            <summary>
+            Obtém ou define o identificador do aluno.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse.TurmaId">
+            <summary>
+            Obtém ou define o identificador da Turma.
+            </summary>
+        </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.DisciplinaResponse">
             <summary>
             Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.DisciplinaResponse"/>.
@@ -521,6 +649,31 @@
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.ProfessorResponse">
             <summary>
             Define a classe <see cref="!:AlunoRequest"/>.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaBoletimResponse">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaBoletimResponse"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaBoletimResponse.Turma">
+            <summary>
+            Obtém ou define a turma.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaBoletimResponse.Professor">
+            <summary>
+            Obtém ou define o professor.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaBoletimResponse.Disciplina">
+            <summary>
+            Obtém ou define a disciplina.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaBoletimResponse.AlunosBoletim">
+            <summary>
+            Obtém ou define a lista de boletins dos alunos da turma.
             </summary>
         </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaResponse">

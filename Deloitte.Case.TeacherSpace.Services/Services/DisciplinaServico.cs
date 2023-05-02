@@ -3,7 +3,7 @@ using Deloitte.Case.TeacherSpace.Domain.Entidades;
 using Deloitte.Case.TeacherSpace.Domain.Validadores;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
-using Deloitte.Case.TeacherSpace.Services.Model;
+using Deloitte.Case.TeacherSpace.Services.Models;
 
 namespace Deloitte.Case.TeacherSpace.Services.Services
 {

@@ -3,7 +3,6 @@ using Deloitte.Case.Api.TeacherSpace.Models.Requests;
 using Deloitte.Case.Api.TeacherSpace.Models.Responses;
 using Deloitte.Case.TeacherSpace.Domain.Entidades;
 using Deloitte.Case.TeacherSpace.Domain.Entities;
-using Deloitte.Case.TeacherSpace.Services.Model;
 using Deloitte.Case.TeacherSpace.Services.Models;
 
 namespace Deloitte.Case.Api.TeacherSpace.Mapeamentos
@@ -42,7 +41,11 @@ namespace Deloitte.Case.Api.TeacherSpace.Mapeamentos
 
         private static void CriarMapeamentoBoletim(IMapperConfigurationExpression cfg)
         {
-
+            cfg.CreateMap<BoletimRequest, BoletimModel>().ReverseMap();
+            cfg.CreateMap<BoletimResponse, BoletimModel>().ReverseMap();
+            cfg.CreateMap<BoletimModel, Boletim>().ReverseMap();
+            cfg.CreateMap<TurmaBoletimModel, TurmaBoletimResponse>().ReverseMap();
+            cfg.CreateMap<AlunoBoletimModel, AlunoBoletimResponse>().ReverseMap();
         }
 
         private static void CriarMapeamentoDisciplina(IMapperConfigurationExpression cfg)

@@ -1,5 +1,6 @@
 ﻿using Deloitte.Case.TeacherSpace.Domain.Entidades.Base;
 using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
+using Deloitte.Case.TeacherSpace.Infraestrutura.Context;
 using System.Linq.Expressions;
 
 namespace Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces
@@ -10,6 +11,11 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces
     public interface IBaseRepositorio<TEntidade>
         where TEntidade : EntidadeBase
     {
+        /// <summary>
+        /// Define o contexto do banco de dados.
+        /// </summary>
+        TeacherSpaceContext DbContext { get; protected set; }
+
         /// <summary>
         /// Adiciona a entidade na base de dados.
         /// </summary>

@@ -1,5 +1,5 @@
 ﻿using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
-using Deloitte.Case.TeacherSpace.Services.Model;
+using Deloitte.Case.TeacherSpace.Services.Models;
 
 namespace Deloitte.Case.TeacherSpace.Services.Interfaces
 {

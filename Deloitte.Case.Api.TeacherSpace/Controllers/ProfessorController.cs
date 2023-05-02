@@ -4,7 +4,7 @@ using Deloitte.Case.Api.TeacherSpace.Models.Responses;
 using Deloitte.Case.TeacherSpace.Core.Models;
 using Deloitte.Case.TeacherSpace.Domain.Utilitarios;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
-using Deloitte.Case.TeacherSpace.Services.Model;
+using Deloitte.Case.TeacherSpace.Services.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
