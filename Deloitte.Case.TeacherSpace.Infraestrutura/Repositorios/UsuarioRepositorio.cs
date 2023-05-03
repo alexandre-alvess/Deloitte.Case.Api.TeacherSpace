@@ -5,6 +5,7 @@ using Deloitte.Case.TeacherSpace.Domain.Utilitarios.Enumeradores;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Context;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
 {

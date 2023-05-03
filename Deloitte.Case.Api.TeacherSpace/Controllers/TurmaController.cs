@@ -15,7 +15,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
     /// <summary>
     /// Define o controller <see cref="TurmaController"/>.
     /// </summary>
-    [Authorize("Bearer")]
+    //[Authorize("Bearer")]
     public class TurmaController : BaseCrudApiController<TurmaModel, TurmaRequest, TurmaResponse, ITurmaServico>
     {
         /// <summary>
@@ -125,14 +125,14 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         [HttpGet("ConsultarPorProfessor")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        [ProducesResponseType(typeof(TurmaResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<TurmaProfessorResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> ConsultarPorProfessor([Required, FromQuery] Guid professorId, [Required, FromQuery] ApiParametros parametros)
         {
             var resultado = await _servico.ConsultarPorProfessor(professorId, parametros.Pagina, parametros.Quantidade);
-            return Ok(_mapper.Map<IEnumerable<TurmaModel>, IEnumerable<TurmaResponse>>(resultado));
+            return Ok(_mapper.Map<IEnumerable<TurmaModel>, IEnumerable<TurmaProfessorResponse>>(resultado));
         }
 
         /// <summary>

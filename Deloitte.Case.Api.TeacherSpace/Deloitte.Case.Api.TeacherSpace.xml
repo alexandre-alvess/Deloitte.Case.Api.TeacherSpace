@@ -156,7 +156,6 @@
             CONSULTAR LISTA POR TURMA.
             </summary>
             <param name="turmaId">O identificador da turma <see cref="T:System.Guid"/>.</param>
-            <param name="parametros">Os parâmetros para realizar a consulta <see cref="T:Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros"/>.</param>
             <returns>Os boletins da turma.</returns>
         </member>
         <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.BoletimController.Inativar(System.Guid)">
@@ -606,6 +605,21 @@
             Obtém ou define o token de autenticação.
             </summary>
         </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.AutenticacaoResponse.UsuarioId">
+            <summary>
+            Obtém ou define o identificador do usuário.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.AutenticacaoResponse.EntidadeId">
+            <summary>
+            Obtém ou define o identificador da entidade. 
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.AutenticacaoResponse.TipoPerfilUsuario">
+            <summary>
+            Obtém ou define o tipo de perfil do usuário.
+            </summary>
+        </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse">
             <summary>
             Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse"/>.
@@ -674,6 +688,26 @@
         <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaBoletimResponse.AlunosBoletim">
             <summary>
             Obtém ou define a lista de boletins dos alunos da turma.
+            </summary>
+        </member>
+        <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaProfessorResponse">
+            <summary>
+            Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaProfessorResponse"/>.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaProfessorResponse.TurmaId">
+            <summary>
+            Obtém ou define o identificador da turma.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaProfessorResponse.ProfessorId">
+            <summary>
+            Obtém ou define o identificador do professor da turma.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaProfessorResponse.Turma">
+            <summary>
+            Obtém ou define o nome da turma.
             </summary>
         </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.TurmaResponse">
