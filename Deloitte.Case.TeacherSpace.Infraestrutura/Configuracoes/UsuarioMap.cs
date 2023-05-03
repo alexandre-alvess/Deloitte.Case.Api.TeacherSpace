@@ -1,5 +1,6 @@
 ﻿using Deloitte.Case.TeacherSpace.Core;
 using Deloitte.Case.TeacherSpace.Domain.Entidades;
+using Deloitte.Case.TeacherSpace.Domain.Utilitarios.Enumeradores;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -34,6 +35,9 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Configuracoes
                 .HasMaxLength(200)
                 .IsRequired()
                 .HasConversion(v => v.Encrypt(), v => v.Decrypt()).IsUnicode(false);
+
+            builder
+                .Property(e => e.TipoPerfil);
         }
     }
 }

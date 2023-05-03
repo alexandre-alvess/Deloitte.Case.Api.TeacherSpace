@@ -60,14 +60,11 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
             if (!validadeCredencial.StatusOk)
                 return Error("Unauthorized", string.Join(", ", validadeCredencial.Erros), HttpStatusCode.Unauthorized);
 
-            var tokenResultado = await _usuarioServico.GereToken(autenticacaoModel);
-            if (!tokenResultado.StatusOk)
-                return Error("InternalServerError", string.Join(", ", tokenResultado.Erros), HttpStatusCode.InternalServerError);
+            var usuarioAutenticacao = await _usuarioServico.Autenticar(autenticacaoModel);
+            if (!usuarioAutenticacao.StatusOk)
+                return Error("InternalServerError", string.Join(", ", usuarioAutenticacao.Erros), HttpStatusCode.InternalServerError);
 
-            return Ok(new AutenticacaoResponse
-            {
-                Token = tokenResultado.Dado
-            });
+            return Ok(_mapper.Map<UsuarioAutenticacao, AutenticacaoResponse>(usuarioAutenticacao.Dado));
         }
     }
 }

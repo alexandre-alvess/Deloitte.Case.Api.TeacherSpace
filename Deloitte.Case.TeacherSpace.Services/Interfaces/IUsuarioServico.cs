@@ -16,10 +16,10 @@ namespace Deloitte.Case.TeacherSpace.Services.Interfaces
         Task<DataResult<bool>> ValideCredenciais(AutenticacaoModel autenticacaoModel);
 
         /// <summary>
-        /// Gera o token com os dados de autenticação do usuário.
+        /// Autentica o usuário gerando o token com os dados do usuário.
         /// </summary>
         /// <param name="autenticacaoModel">Os dados de autenticação do usuário.</param>
-        /// <returns>O token de autenticação <see cref="DataResult{string}"/>.</returns>
-        Task<DataResult<string>> GereToken(AutenticacaoModel autenticacaoModel);
+        /// <returns>Os dados de autenticação do usuário <see cref="DataResult{UsuarioAutenticacao}"/>.</returns>
+        Task<DataResult<UsuarioAutenticacao>> Autenticar(AutenticacaoModel autenticacaoModel);
     }
 }

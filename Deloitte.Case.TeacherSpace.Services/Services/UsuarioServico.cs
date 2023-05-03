@@ -6,6 +6,7 @@ using Deloitte.Case.TeacherSpace.Domain.Validadores;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
@@ -53,17 +54,18 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
         }
 
         /// <summary>
-        /// Gera o token com os dados de autenticação do usuário.
+        /// Autentica o usuário gerando o token com os dados do usuário.
         /// </summary>
         /// <param name="autenticacaoModel">Os dados de autenticação do usuário.</param>
-        /// <returns>O token de autenticação <see cref="DataResult{string}"/>.</returns>
-        public async Task<DataResult<string>> GereToken(AutenticacaoModel autenticacaoModel)
+        /// <returns>Os dados de autenticação do usuário <see cref="DataResult{UsuarioAutenticacao}"/>.</returns>
+        public async Task<DataResult<UsuarioAutenticacao>> Autenticar(AutenticacaoModel autenticacaoModel)
         {
             var credencialResultado = await ValideCredenciais(autenticacaoModel);
             if (!credencialResultado.StatusOk)
-                return DataResult<string>.Falha(credencialResultado.Erros);
+                return DataResult<UsuarioAutenticacao>.Falha(credencialResultado.Erros);
 
-            var usuario = await _repositorio.Consultar(x => x.Login.ToUpper() == autenticacaoModel.Login.ToUpper(), i => i.Pessoa);
+            //var usuario = await _repositorio.Consultar(x => x.Login.ToUpper() == autenticacaoModel.Login.ToUpper(), i => i.Pessoa);
+            var usuario = await ConsultarUsuarioParaAutenticacao(autenticacaoModel);
 
             var chaveSecreta = Encoding.ASCII.GetBytes(_appSettings.ChaveSecreta);
 
@@ -97,7 +99,13 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return DataResult<string>.Successo(tokenHandler.WriteToken(token));
+            return DataResult<UsuarioAutenticacao>.Successo(new UsuarioAutenticacao
+            {
+                Token = tokenHandler.WriteToken(token),
+                UsuarioId = usuario.Id,
+                EntidadeId = usuario.EntidadId.GetValueOrDefault(),
+                TipoPerfilUsuario = usuario.TipoPerfil
+            });
         }
 
         protected override Task<DataResult<UsuarioModel>> AntesDeAdicionar(UsuarioModel model, Usuario entidade)
@@ -108,6 +116,33 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
             entidade.Pessoa.Nome = model.Nome;
             
             return Task.FromResult(DataResult<UsuarioModel>.Successo(model));
+        }
+
+        private async Task<Usuario> ConsultarUsuarioParaAutenticacao(AutenticacaoModel autenticacaoModel)
+        {
+            var dbContext = _repositorio.DbContext;
+
+            var usuarioAuth = await (from usuario in dbContext.Usuarios
+                                     join professor in dbContext.Professores on usuario.PessoaId equals professor.PessoaId into p
+                                     from pp in p.DefaultIfEmpty()
+                                     join aluno in dbContext.Alunos on usuario.PessoaId equals aluno.PessoaId into a
+                                     from ap in a.DefaultIfEmpty()
+                                     where usuario.Login.ToUpper() == autenticacaoModel.Login.ToUpper() && usuario.Senha == autenticacaoModel.Senha
+                                     select new Usuario
+                                     {
+                                         Ativo = usuario.Ativo,
+                                         Id = usuario.Id,
+                                         Login = usuario.Login,
+                                         Pessoa = usuario.Pessoa,
+                                         PessoaId = usuario.PessoaId,
+                                         Senha = usuario.Senha,
+                                         TipoPerfil = usuario.TipoPerfil,
+                                         EntidadId = pp != null ? pp.Id : ap != null ? ap.Id : null,
+                                         
+                                     }).FirstOrDefaultAsync();
+
+            return usuarioAuth;
+            //return null;
         }
     }
 }

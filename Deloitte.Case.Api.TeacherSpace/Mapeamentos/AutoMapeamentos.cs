@@ -77,7 +77,13 @@ namespace Deloitte.Case.Api.TeacherSpace.Mapeamentos
             cfg.CreateMap<TurmaRequest, TurmaModel>().ReverseMap();
             cfg.CreateMap<TurmaResponse, TurmaModel>().ReverseMap();
             cfg.CreateMap<Turma, TurmaModel>();
-            
+
+            cfg.CreateMap<TurmaModel, TurmaProfessorResponse>()
+                .ForMember(x => x.Turma, y => y.MapFrom(z => z.Nome))
+                .ForMember(x => x.TurmaId, y => y.MapFrom(z => z.Id))
+                .ForMember(x => x.ProfessorId, y => y.MapFrom(z => z.ProfessorId))
+                .ReverseMap();
+
             cfg.CreateMap<TurmaModel, Turma>()
                 .ForMember(x => x.Professor, opt => opt.Ignore())
                 .ForMember(x => x.Disciplina, opt => opt.Ignore());
@@ -100,6 +106,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Mapeamentos
         private static void CriarMapeamentoAutenticacao(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<AutenticacaoRequest, AutenticacaoModel>().ReverseMap();
+            cfg.CreateMap<AutenticacaoResponse, UsuarioAutenticacao>().ReverseMap();
         }
     }
 }

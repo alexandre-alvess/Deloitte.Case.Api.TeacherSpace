@@ -32,7 +32,12 @@ namespace Deloitte.Case.TeacherSpace.Domain.Entidades
         /// <summary>
         /// Obtém ou define o tipo de perfil do usuário.
         /// </summary>
-        [NotMapped]
         public EnumTipoPerfilUsuario TipoPerfil { get; set; }
+
+        /// <summary>
+        /// Obtém ou define o identificador da entidade do usuário.
+        /// </summary>
+        [NotMapped]
+        public Guid? EntidadId { get; set; }
     }
 }
