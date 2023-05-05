@@ -57,7 +57,7 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces
         /// <param name="pagina">A pagina a ser consultada <see cref="int"/>.</param>
         /// <param name="quantide_pagina">A quantidade de elementos para ser consultada por página <see cref="int"/>.</param>
         /// <returns>A lista de entidades consultadas <see cref="List{T}"/>.</returns>
-        Task<IEnumerable<TEntidade>> ConsultarLista(int pagina, int quantide_pagina);
+        Task<PagedResult<TEntidade>> ConsultarLista(int pagina, int quantide_pagina);
 
         /// <summary>
         /// Consulta paginada de uma lista de entidades.
@@ -67,6 +67,6 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces
         /// <param name="quantide_pagina">A quantidade de elementos para ser consultada por página <see cref="int"/>.</param>
         /// <param name="includes">Os includes da consulta.</param>
         /// <returns>A lista de entidades consultadas <see cref="List{T}"/>.</returns>
-        Task<IEnumerable<TEntidade>> ConsultarLista(Expression<Func<TEntidade, bool>> filtroBusca, int pagina, int quantide_pagina, params Expression<Func<TEntidade, object>>[] includes);
+        Task<PagedResult<TEntidade>> ConsultarLista(Expression<Func<TEntidade, bool>> filtroBusca, int pagina, int quantide_pagina, params Expression<Func<TEntidade, object>>[] includes);
     }
 }

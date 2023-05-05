@@ -7,6 +7,7 @@ using Deloitte.Case.TeacherSpace.Services.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 
@@ -15,7 +16,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
     /// <summary>
     /// Define o controller <see cref="TurmaController"/>.
     /// </summary>
-    //[Authorize("Bearer")]
+    [Authorize("Bearer")]
     public class TurmaController : BaseCrudApiController<TurmaModel, TurmaRequest, TurmaResponse, ITurmaServico>
     {
         /// <summary>
@@ -125,14 +126,19 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         [HttpGet("ConsultarPorProfessor")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<TurmaProfessorResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<TurmaProfessorResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> ConsultarPorProfessor([Required, FromQuery] Guid professorId, [Required, FromQuery] ApiParametros parametros)
         {
             var resultado = await _servico.ConsultarPorProfessor(professorId, parametros.Pagina, parametros.Quantidade);
-            return Ok(_mapper.Map<IEnumerable<TurmaModel>, IEnumerable<TurmaProfessorResponse>>(resultado));
+            return Ok(new PagedResult<TurmaProfessorResponse>
+            { 
+                Dados = _mapper.Map<IEnumerable<TurmaModel>, IEnumerable<TurmaProfessorResponse>>(resultado.Dados),
+                TotalRegistros = resultado.TotalRegistros,
+                TotalRegistrosFiltro = resultado.TotalRegistrosFiltro
+            });
         }
 
         /// <summary>
@@ -143,7 +149,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         [HttpGet("ConsultarLista")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<TurmaResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<TurmaResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status500InternalServerError)]

@@ -29,6 +29,6 @@ namespace Deloitte.Case.TeacherSpace.Services.Interfaces
         /// <param name="pagina">A pagina a ser consultada <see cref="int"/>.</param>
         /// <param name="quantide_pagina">A quantidade de elementos para ser consultada por página <see cref="int"/>.</param>
         /// <returns>As turmas vinculadas ao professor informado <see cref="TModel"/>.</returns>
-        Task<IEnumerable<TurmaModel>> ConsultarPorProfessor(Guid professorId, int pagina, int quantide_pagina);
+        Task<PagedResult<TurmaModel>> ConsultarPorProfessor(Guid professorId, int pagina, int quantide_pagina);
     }
 }

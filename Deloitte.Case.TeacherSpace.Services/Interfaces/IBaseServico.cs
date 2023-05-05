@@ -28,8 +28,8 @@ namespace Deloitte.Case.TeacherSpace.Services.Interfaces
         /// </summary>
         /// <param name="pagina">A pagina a ser consultada <see cref="int"/>.</param>
         /// <param name="quantide_pagina">A quantidade de elementos para ser consultada por página <see cref="int"/>.</param>
-        /// <returns>O modelo de dados consultado <see cref="TModel"/>.</returns>
-        Task<IEnumerable<TModel>> ConsultarLista(int pagina, int quantide_pagina);
+        /// <returns>A lista de modelos de dados consultado <see cref="TModel"/>.</returns>
+        Task<PagedResult<TModel>> ConsultarLista(int pagina, int quantide_pagina);
 
         /// <summary>
         /// Atualiza o modelo de dados.

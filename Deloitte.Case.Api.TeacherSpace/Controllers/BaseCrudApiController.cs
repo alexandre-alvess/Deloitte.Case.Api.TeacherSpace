@@ -82,7 +82,13 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         protected virtual async Task<IActionResult> ConsultarListaInterno([FromQuery] ApiParametros parametros)
         {
             var resultado = await _servico.ConsultarLista(parametros.Pagina, parametros.Quantidade);
-            return Ok(_mapper.Map<IEnumerable<TModel>, IEnumerable<TResponse>>(resultado));
+            return Ok(new PagedResult<TResponse>
+            {
+                Dados = _mapper.Map<IEnumerable<TModel>, IEnumerable<TResponse>>(resultado.Dados),
+                TotalRegistrosFiltro = resultado.TotalRegistrosFiltro,
+                TotalRegistros = resultado.TotalRegistros,
+            });
+
         }
     }
 }

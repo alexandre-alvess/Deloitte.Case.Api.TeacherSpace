@@ -15,7 +15,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
     /// <summary>
     /// Define o controller <see cref="ProfessorController"/>.
     /// </summary>
-    //[Authorize("Bearer")]
+    [Authorize("Bearer")]
     public class ProfessorController : BaseCrudApiController<ProfessorModel, ProfessorRequest, ProfessorResponse, IProfessorServico>
     {
         /// <summary>
@@ -96,7 +96,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         [HttpGet("ConsultarLista")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<ProfessorResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<ProfessorResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status500InternalServerError)]

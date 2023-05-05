@@ -87,10 +87,16 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
         /// <param name="pagina">A pagina a ser consultada <see cref="int"/>.</param>
         /// <param name="quantide_pagina">A quantidade de elementos para ser consultada por página <see cref="int"/>.</param>
         /// <returns>O modelo de dados consultado <see cref="TModel"/>.</returns>
-        public virtual async Task<IEnumerable<TModel>> ConsultarLista(int pagina, int quantide_pagina)
+        public virtual async Task<PagedResult<TModel>> ConsultarLista(int pagina, int quantide_pagina)
         {
-            var listaEntidades = await _repositorio.ConsultarLista(pagina, quantide_pagina);
-            return _mapper.Map<IEnumerable<TEntidade>, IEnumerable<TModel>>(listaEntidades);
+            var resultado = await _repositorio.ConsultarLista(pagina, quantide_pagina);
+
+            return new PagedResult<TModel>
+            {
+                Dados = _mapper.Map<IEnumerable<TEntidade>, IEnumerable<TModel>>(resultado.Dados),
+                TotalRegistros = resultado.TotalRegistros,
+                TotalRegistrosFiltro = resultado.TotalRegistrosFiltro
+            };
         }
 
         /// <summary>

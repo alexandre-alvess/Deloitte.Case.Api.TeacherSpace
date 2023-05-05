@@ -64,7 +64,6 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
             if (!credencialResultado.StatusOk)
                 return DataResult<UsuarioAutenticacao>.Falha(credencialResultado.Erros);
 
-            //var usuario = await _repositorio.Consultar(x => x.Login.ToUpper() == autenticacaoModel.Login.ToUpper(), i => i.Pessoa);
             var usuario = await ConsultarUsuarioParaAutenticacao(autenticacaoModel);
 
             var chaveSecreta = Encoding.ASCII.GetBytes(_appSettings.ChaveSecreta);
@@ -142,7 +141,6 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
                                      }).FirstOrDefaultAsync();
 
             return usuarioAuth;
-            //return null;
         }
     }
 }
