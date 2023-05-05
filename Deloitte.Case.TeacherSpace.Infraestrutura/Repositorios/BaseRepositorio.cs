@@ -120,10 +120,18 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
         /// </summary>
         /// <param name="pagina">A pagina a ser consultada <see cref="int"/>.</param>
         /// <param name="quantide_pagina">A quantidade de elementos para ser consultada por página <see cref="int"/>.</param>
-        /// <returns>A lista de entidades consultadas <see cref="List{T}"/>.</returns>
-        public virtual async Task<IEnumerable<TEntidade>> ConsultarLista(int pagina, int quantide_pagina)
+        /// <returns>A lista de entidades consultadas <see cref="PagedResult{T}"/>.</returns>
+        public virtual async Task<PagedResult<TEntidade>> ConsultarLista(int pagina, int quantide_pagina)
         {
-            return await QueryIncludes().OrderBy(o => 1).AsNoTracking().Skip(quantide_pagina * (pagina - 1)).Take(quantide_pagina).ToListAsync();
+            var totalRegistros = await QueryIncludes().AsNoTracking().CountAsync();
+            var listaResultado = await QueryIncludes().OrderBy(o => 1).AsNoTracking().Skip(quantide_pagina * (pagina - 1)).Take(quantide_pagina).ToListAsync();
+
+            return new PagedResult<TEntidade>
+            {
+                Dados = listaResultado,
+                TotalRegistros = totalRegistros,
+                TotalRegistrosFiltro = listaResultado.Count
+            };
         }
 
         /// <summary>
@@ -133,10 +141,18 @@ namespace Deloitte.Case.TeacherSpace.Infraestrutura.Repositorios
         /// <param name="pagina">A pagina a ser consultada <see cref="int"/>.</param>
         /// <param name="quantide_pagina">A quantidade de elementos para ser consultada por página <see cref="int"/>.</param>
         /// <param name="includes">Os includes da consulta.</param>
-        /// <returns>A lista de entidades consultadas <see cref="List{T}"/>.</returns>
-        public virtual async Task<IEnumerable<TEntidade>> ConsultarLista(Expression<Func<TEntidade, bool>> filtroBusca, int pagina, int quantide_pagina, params Expression<Func<TEntidade, object>>[] includes)
+        /// <returns>A lista de entidades consultadas <see cref="PagedResult{T}"/>.</returns>
+        public virtual async Task<PagedResult<TEntidade>> ConsultarLista(Expression<Func<TEntidade, bool>> filtroBusca, int pagina, int quantide_pagina, params Expression<Func<TEntidade, object>>[] includes)
         {
-            return await Include(includes).Where(filtroBusca).OrderBy(o => 1).AsNoTracking().Skip(quantide_pagina * (pagina - 1)).Take(quantide_pagina).ToListAsync();
+            var totalRegistros = await Include(includes).Where(filtroBusca).CountAsync();
+            var listaResultado = await Include(includes).Where(filtroBusca).OrderBy(o => 1).AsNoTracking().Skip(quantide_pagina * (pagina - 1)).Take(quantide_pagina).ToListAsync();
+
+            return new PagedResult<TEntidade>
+            {
+                Dados = listaResultado,
+                TotalRegistros = totalRegistros,
+                TotalRegistrosFiltro = listaResultado.Count
+            };
         }
 
         protected IQueryable<T> Include<T>(params Expression<Func<T, object>>[] paths)

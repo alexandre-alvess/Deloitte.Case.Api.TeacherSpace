@@ -77,10 +77,16 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
         /// <param name="pagina">A pagina a ser consultada <see cref="int"/>.</param>
         /// <param name="quantide_pagina">A quantidade de elementos para ser consultada por página <see cref="int"/>.</param>
         /// <returns>As turmas vinculadas ao professor informado <see cref="TModel"/>.</returns>
-        public async Task<IEnumerable<TurmaModel>> ConsultarPorProfessor(Guid professorId, int pagina, int quantide_pagina)
+        public async Task<PagedResult<TurmaModel>> ConsultarPorProfessor(Guid professorId, int pagina, int quantide_pagina)
         {
-            var entidade = await _repositorio.ConsultarLista(x => x.ProfessorId == professorId, pagina, quantide_pagina);
-            return _mapper.Map<IEnumerable<Turma>, IEnumerable<TurmaModel>>(entidade);
+            var paginaEntidades = await _repositorio.ConsultarLista(x => x.ProfessorId == professorId, pagina, quantide_pagina);
+            
+            return new PagedResult<TurmaModel>
+            {
+                Dados = _mapper.Map<IEnumerable<Turma>, IEnumerable<TurmaModel>>(paginaEntidades.Dados),
+                TotalRegistros = paginaEntidades.TotalRegistros,
+                TotalRegistrosFiltro = paginaEntidades.TotalRegistrosFiltro
+            };
         }
 
         protected override Task<DataResult<TurmaModel>> AntesDeAtualizar(TurmaModel model, Turma entidade)
