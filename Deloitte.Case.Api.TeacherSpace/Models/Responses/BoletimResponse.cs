@@ -27,9 +27,21 @@ namespace Deloitte.Case.Api.TeacherSpace.Models.Responses
         public Guid AlunoId { get; set; }
 
         /// <summary>
+        /// Obtém ou define o aluno.
+        /// </summary>
+        [JsonPropertyName("aluno")]
+        public AlunoResponse Aluno { get; set; }
+
+        /// <summary>
         /// Obtém ou define o identificador da Turma.
         /// </summary>
         [JsonPropertyName("turma_id")]
         public Guid TurmaId { get; set; }
+
+        /// <summary>
+        /// Obtém ou define o nome da turma.
+        /// </summary>
+        [JsonPropertyName("turma")]
+        public TurmaResponse Turma { get; set; }
     }
 }
