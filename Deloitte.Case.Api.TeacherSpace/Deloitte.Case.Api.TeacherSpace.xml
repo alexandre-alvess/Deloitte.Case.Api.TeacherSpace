@@ -640,9 +640,19 @@
             Obtém ou define o identificador do aluno.
             </summary>
         </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse.Aluno">
+            <summary>
+            Obtém ou define o aluno.
+            </summary>
+        </member>
         <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse.TurmaId">
             <summary>
             Obtém ou define o identificador da Turma.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse.Turma">
+            <summary>
+            Obtém ou define o nome da turma.
             </summary>
         </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.DisciplinaResponse">
