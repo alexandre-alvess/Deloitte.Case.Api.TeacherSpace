@@ -96,7 +96,7 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         [HttpGet("ConsultarLista")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<UsuarioResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<UsuarioResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status500InternalServerError)]
