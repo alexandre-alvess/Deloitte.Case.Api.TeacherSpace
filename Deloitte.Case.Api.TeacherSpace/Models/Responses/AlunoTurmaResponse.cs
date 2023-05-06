@@ -1,4 +1,5 @@
 ﻿using Deloitte.Case.Api.TeacherSpace.Models.Bases;
+using System.Text.Json.Serialization;
 
 namespace Deloitte.Case.Api.TeacherSpace.Models.Responses
 {
@@ -10,11 +11,19 @@ namespace Deloitte.Case.Api.TeacherSpace.Models.Responses
         /// <summary>
         /// Obtém ou define o identificador do aluno.
         /// </summary>
+        [JsonPropertyName("aluno_id")]
         public Guid AlunoId { get; set; }
 
         /// <summary>
         /// Obtém ou define o identificador da turma.
         /// </summary>
+        [JsonPropertyName("turm_id")]
         public Guid TurmaId { get; set; }
+
+        /// <summary>
+        /// Obtém ou define o nome do aluno.
+        /// </summary>
+        [JsonPropertyName("aluno")]
+        public string Aluno { get; set; }
     }
 }

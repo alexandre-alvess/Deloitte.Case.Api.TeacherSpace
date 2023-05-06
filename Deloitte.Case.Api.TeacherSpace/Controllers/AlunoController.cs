@@ -106,6 +106,23 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         }
 
         /// <summary>
+        /// CONSULTAR POR TURMA RESUMO.
+        /// </summary>
+        /// <param name="turmaId">O identificador da turma <see cref="Guid"/>.</param>
+        /// <returns>Os dados dos alunos consultados.</returns>
+        [HttpGet("ConsultarPorTurmaSearch")]
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        [ProducesResponseType(typeof(IEnumerable<AlunoTurmaResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> ConsultarPorTurmaSearch([Required, FromQuery] Guid turmaId)
+        {
+            return Ok(_mapper.Map<IEnumerable<AlunoTurmaModel>, IEnumerable<AlunoTurmaResponse>>(await _servico.ConsultarPorTurmaSearch(turmaId)));
+        }
+
+        /// <summary>
         /// INATIVAR.
         /// </summary>
         /// <param name="alunoId">O identificador do aluno <see cref="Guid"/>.</param>

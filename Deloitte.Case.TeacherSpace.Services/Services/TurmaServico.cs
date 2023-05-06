@@ -5,6 +5,7 @@ using Deloitte.Case.TeacherSpace.Domain.Validadores;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Deloitte.Case.TeacherSpace.Services.Services
 {
@@ -73,10 +74,10 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
         /// <summary>
         /// Consulta as turmas vinculadas ao professor.
         /// </summary>
-        /// <param name="id">O identificador do professor <see cref="Guid"/>.</param>
+        /// <param name="professorId">O identificador do professor <see cref="Guid"/>.</param>
         /// <param name="pagina">A pagina a ser consultada <see cref="int"/>.</param>
         /// <param name="quantide_pagina">A quantidade de elementos para ser consultada por página <see cref="int"/>.</param>
-        /// <returns>As turmas vinculadas ao professor informado <see cref="TModel"/>.</returns>
+        /// <returns>As turmas vinculadas ao professor informado <see cref="PagedResult{TurmaModel}"/>.</returns>
         public async Task<PagedResult<TurmaModel>> ConsultarPorProfessor(Guid professorId, int pagina, int quantide_pagina)
         {
             var paginaEntidades = await _repositorio.ConsultarLista(x => x.ProfessorId == professorId, pagina, quantide_pagina);
@@ -87,6 +88,17 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
                 TotalRegistros = paginaEntidades.TotalRegistros,
                 TotalRegistrosFiltro = paginaEntidades.TotalRegistrosFiltro
             };
+        }
+
+        /// <summary>
+        /// Consulta as turmas vinculadas ao professor.
+        /// </summary>
+        /// <param name="professorId">O identificador do professor <see cref="Guid"/>.</param>
+        /// <returns>As turmas vinculadas ao professor informado <see cref="IEnumerable{TurmaModel}"/>.</returns>
+        public async Task<IEnumerable<TurmaModel>> ConsultarPorProfessorSearch(Guid professorId)
+        {
+            var turmas = await _repositorio.DbContext.Turmas.Where(x => x.ProfessorId == professorId).ToListAsync();
+            return _mapper.Map<IEnumerable<Turma>, IEnumerable<TurmaModel>>(turmas);
         }
 
         protected override Task<DataResult<TurmaModel>> AntesDeAtualizar(TurmaModel model, Turma entidade)

@@ -32,5 +32,10 @@ namespace Deloitte.Case.TeacherSpace.Services.Models
         /// Obtém ou define o tipo de perfil do usuário.
         /// </summary>
         public EnumTipoPerfilUsuario TipoPerfilUsuario { get; set; }
+
+        /// <summary>
+        /// Obtém ou define o usuários.
+        /// </summary>
+        public UsuarioModel Usuario { get; set; }
     }
 }

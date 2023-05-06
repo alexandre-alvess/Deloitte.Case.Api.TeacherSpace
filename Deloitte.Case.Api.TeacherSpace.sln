@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Core", "05 - Core", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deloitte.Case.TeacherSpace.Core", "Deloitte.Case.TeacherSpace.Core\Deloitte.Case.TeacherSpace.Core.csproj", "{0886BAAC-1551-49BE-A387-3A8AC6384EE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deloitte.Case.TeacherSpace.Services.Tests", "Deloitte.Case.TeacherSpace.Services.Tests\Deloitte.Case.TeacherSpace.Services.Tests.csproj", "{265843EE-6CB0-4070-826A-F84E728651CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{0886BAAC-1551-49BE-A387-3A8AC6384EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0886BAAC-1551-49BE-A387-3A8AC6384EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0886BAAC-1551-49BE-A387-3A8AC6384EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{265843EE-6CB0-4070-826A-F84E728651CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{265843EE-6CB0-4070-826A-F84E728651CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{265843EE-6CB0-4070-826A-F84E728651CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{265843EE-6CB0-4070-826A-F84E728651CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{92E63046-CF65-4936-8021-6538DAE98B1B} = {B4015557-1754-486F-931C-CDEA670513DC}
 		{BD2BFEBD-AC45-4744-94B9-81AAC2473493} = {01784CCC-CC79-4BFA-8C9D-D711F21179F5}
 		{0886BAAC-1551-49BE-A387-3A8AC6384EE3} = {83E15C1E-0FD4-41F9-90C9-B2F528894DA8}
+		{265843EE-6CB0-4070-826A-F84E728651CC} = {B4015557-1754-486F-931C-CDEA670513DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8AD834D3-C712-434F-AC80-620F6254E332}
