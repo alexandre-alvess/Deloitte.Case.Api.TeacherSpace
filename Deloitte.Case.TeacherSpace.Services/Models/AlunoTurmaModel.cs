@@ -1,4 +1,6 @@
-﻿namespace Deloitte.Case.TeacherSpace.Services.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Deloitte.Case.TeacherSpace.Services.Models
 {
     /// <summary>
     /// Define a classe <see cref="AlunoTurmaModel"/>.
@@ -14,5 +16,10 @@
         /// Obtém ou define o identificador da turma.
         /// </summary>
         public Guid TurmaId { get; set; }
+
+        /// <summary>
+        /// Obtém ou define o nome do aluno.
+        /// </summary>
+        public string Aluno { get; set; }
     }
 }

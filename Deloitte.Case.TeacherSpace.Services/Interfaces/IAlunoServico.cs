@@ -7,5 +7,11 @@ namespace Deloitte.Case.TeacherSpace.Services.Interfaces
     /// </summary>
     public interface IAlunoServico : IBaseServico<AlunoModel>
     {
+        /// <summary>
+        /// Consulta os alunos por turma.
+        /// </summary>
+        /// <param name="turmaId">O identificador da turma <see cref="Guid"/>.</param>
+        /// <returns>Os alunos da turma consultada.</returns>
+        Task<IEnumerable<AlunoTurmaModel>> ConsultarPorTurmaSearch(Guid turmaId);
     }
 }

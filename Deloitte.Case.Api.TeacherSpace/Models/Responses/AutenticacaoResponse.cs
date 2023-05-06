@@ -31,5 +31,11 @@ namespace Deloitte.Case.Api.TeacherSpace.Models.Responses
         /// </summary>
         [JsonPropertyName("tipo_perfil_usuario")]
         public EnumTipoPerfilUsuario TipoPerfilUsuario { get; set; }
+
+        /// <summary>
+        /// Obtém ou define o usuário.
+        /// </summary>
+        [JsonPropertyName("usuario")]
+        public UsuarioResponse Usuario { get; set; }
     }
 }

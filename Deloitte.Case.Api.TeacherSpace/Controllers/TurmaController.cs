@@ -142,6 +142,25 @@ namespace Deloitte.Case.Api.TeacherSpace.Controllers
         }
 
         /// <summary>
+        /// CONSULTAR POR PROFESSOR RESUMO.
+        /// </summary>
+        /// <param name="professorId">O identificador do professor <see cref="Guid"/>.</param>
+        /// <returns>Os dados da turma consultada.</returns>
+        [HttpGet("ConsultarPorProfessorSearch")]
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        [ProducesResponseType(typeof(IEnumerable<TurmaProfessorResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiErrorMessage), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> ConsultarPorProfessorSearch([Required, FromQuery] Guid professorId)
+        {
+            var resultado = await _servico.ConsultarPorProfessorSearch(professorId);
+
+            return Ok(_mapper.Map<IEnumerable<TurmaModel>, IEnumerable<TurmaProfessorResponse>>(resultado));
+        }
+
+        /// <summary>
         /// CONSULTAR LISTA.
         /// </summary>
         /// <param name="parametros">Os parâmetros para realizar a consulta <see cref="ApiParametros"/>.</param>

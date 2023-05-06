@@ -103,7 +103,8 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
                 Token = tokenHandler.WriteToken(token),
                 UsuarioId = usuario.Id,
                 EntidadeId = usuario.EntidadId.GetValueOrDefault(),
-                TipoPerfilUsuario = usuario.TipoPerfil
+                TipoPerfilUsuario = usuario.TipoPerfil,
+                Usuario = _mapper.Map<Usuario, UsuarioModel>(usuario)
             });
         }
 

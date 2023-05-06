@@ -44,6 +44,13 @@
             <param name="parametros">Os parâmetros para realizar a consulta <see cref="T:Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros"/>.</param>
             <returns>Os dados do aluno consultados.</returns>
         </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController.ConsultarPorTurmaSearch(System.Guid)">
+            <summary>
+            CONSULTAR POR TURMA RESUMO.
+            </summary>
+            <param name="turmaId">O identificador da turma <see cref="T:System.Guid"/>.</param>
+            <returns>Os dados dos alunos consultados.</returns>
+        </member>
         <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.AlunoController.Inativar(System.Guid)">
             <summary>
             INATIVAR.
@@ -305,6 +312,13 @@
             </summary>
             <param name="professorId">O identificador do professor <see cref="T:System.Guid"/>.</param>
             <param name="parametros">Os parâmetros para realizar a consulta <see cref="T:Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros"/>.</param>
+            <returns>Os dados da turma consultada.</returns>
+        </member>
+        <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.TurmaController.ConsultarPorProfessorSearch(System.Guid)">
+            <summary>
+            CONSULTAR POR PROFESSOR RESUMO.
+            </summary>
+            <param name="professorId">O identificador do professor <see cref="T:System.Guid"/>.</param>
             <returns>Os dados da turma consultada.</returns>
         </member>
         <member name="M:Deloitte.Case.Api.TeacherSpace.Controllers.TurmaController.ConsultarLista(Deloitte.Case.TeacherSpace.Domain.Utilitarios.ApiParametros)">
@@ -595,6 +609,11 @@
             Obtém ou define o identificador da turma.
             </summary>
         </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.AlunoTurmaResponse.Aluno">
+            <summary>
+            Obtém ou define o nome do aluno.
+            </summary>
+        </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AutenticacaoResponse">
             <summary>
             Define a classe <see cref="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.AutenticacaoResponse"/>.
@@ -618,6 +637,11 @@
         <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.AutenticacaoResponse.TipoPerfilUsuario">
             <summary>
             Obtém ou define o tipo de perfil do usuário.
+            </summary>
+        </member>
+        <member name="P:Deloitte.Case.Api.TeacherSpace.Models.Responses.AutenticacaoResponse.Usuario">
+            <summary>
+            Obtém ou define o usuário.
             </summary>
         </member>
         <member name="T:Deloitte.Case.Api.TeacherSpace.Models.Responses.BoletimResponse">

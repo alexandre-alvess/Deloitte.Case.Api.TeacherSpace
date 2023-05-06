@@ -5,6 +5,7 @@ using Deloitte.Case.TeacherSpace.Domain.Validadores;
 using Deloitte.Case.TeacherSpace.Infraestrutura.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Interfaces;
 using Deloitte.Case.TeacherSpace.Services.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Deloitte.Case.TeacherSpace.Services.Services
 {
@@ -20,6 +21,29 @@ namespace Deloitte.Case.TeacherSpace.Services.Services
         /// <param name="mapper">O mapeador do modelo de dados <see cref="IMapper"/>.</param>
         public AlunoServico(IAlunoRepositorio repositorio, IMapper mapper) : base(repositorio, mapper)
         {
+        }
+
+        /// <summary>
+        /// Consulta os alunos por turma.
+        /// </summary>
+        /// <param name="turmaId">O identificador da turma <see cref="Guid"/>.</param>
+        /// <returns>Os alunos da turma consultada.</returns>
+        public async Task<IEnumerable<AlunoTurmaModel>> ConsultarPorTurmaSearch(Guid turmaId)
+        {
+            var dbContext = _repositorio.DbContext;
+
+            var alunos = await (from alunoTurma in dbContext.AlunoTurmas
+                                join aluno in dbContext.Alunos on alunoTurma.AlunoId equals aluno.Id
+                                join pessoa in dbContext.Pessoas on aluno.PessoaId equals pessoa.Id
+                                where alunoTurma.TurmaId == turmaId
+                                select new AlunoTurmaModel
+                                {
+                                    TurmaId = turmaId,
+                                    AlunoId = aluno.Id,
+                                    Aluno = pessoa.Nome
+                                }).ToListAsync();
+
+            return alunos;
         }
 
         protected override Task<DataResult<AlunoModel>> AntesDeAdicionar(AlunoModel model, Aluno entidade)

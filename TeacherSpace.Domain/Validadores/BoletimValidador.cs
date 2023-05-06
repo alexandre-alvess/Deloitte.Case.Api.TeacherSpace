@@ -12,7 +12,6 @@ namespace Deloitte.Case.TeacherSpace.Domain.Validadores
         {
             RuleFor(boletim => boletim.Nota)
                 .NotNull()
-                .NotEmpty()
                 .WithMessage("A nota é obrigatória.")
 
                 .GreaterThanOrEqualTo(0)
